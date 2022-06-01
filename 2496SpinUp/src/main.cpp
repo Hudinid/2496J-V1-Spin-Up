@@ -1,6 +1,4 @@
 #include "main.h"
-using namespace pros;
-using namespace std;
 /**
  * A callback function for LLEMU's center button.
  *
@@ -8,13 +6,6 @@ using namespace std;
  * "I was pressed!" and nothing.
  */
 void on_center_button() {
-	static bool pressed = false;
-	pressed = !pressed;
-	if (pressed) {
-		pros::lcd::set_text(2, "I was pressed!");
-	} else {
-		pros::lcd::clear_line(2);
-	}
 }
 
 /**
@@ -24,10 +15,6 @@ void on_center_button() {
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello PROS User!");
-
-	pros::lcd::register_btn1_cb(on_center_button);
 }
 
 /**
@@ -77,22 +64,4 @@ void autonomous() {}
 void opcontrol() {
 	
 	
-	Motor motor(5);
-	Optical optical_sensor(20);
-	while (true) {
-		double colorHue = optical_sensor.get_hue();
-		// cout << "Color Hue: " << colorHue << "\n";
-		optical_sensor.set_led_pwm(25);
-		screen::print(TEXT_MEDIUM, 3, "Color Hue: %0.3f", colorHue);
-		if(colorHue >= 10 && colorHue <= 30) {
-			motor.move(60);
-		}
-		else if (colorHue >= 210 && colorHue <= 222) {
-			motor.move(-60);
-		} 
-		else {
-			motor.move(0);
-		}
-		delay(25);
 	}
-}
