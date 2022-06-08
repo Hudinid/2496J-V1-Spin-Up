@@ -11,10 +11,10 @@ namespace glb {
     #define P_LB 15
     #define P_INTAKE 12
 
-    Motor RF (P_RF, E_MOTOR_GEARSET_06, true);
-    Motor RB (P_RB, E_MOTOR_GEARSET_06);
+    Motor RF (P_RF, E_MOTOR_GEARSET_06, 1);
+    Motor RB (P_RB, E_MOTOR_GEARSET_06, 1);
     Motor LF (P_LF, E_MOTOR_GEARSET_06);
-    Motor LB (P_LB, E_MOTOR_GEARSET_06, true);
+    Motor LB (P_LB, E_MOTOR_GEARSET_06);
     Motor INTAKE (P_INTAKE, E_MOTOR_GEARSET_18, true); 
     Controller con (E_CONTROLLER_MASTER);
 

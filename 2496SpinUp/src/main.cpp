@@ -66,8 +66,14 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-
-	
+	con.clear();
+	delay(50);
+	con.print(0, 0, "jeff don't int");
+	// delay(50);
+	// con.print(1, 0, "stay under the speed limit-vip");
+	// delay(50);
+	// con.print(2, 0, "go over the speed limit-elkins");
+	// delay(50);
 	while(true) {
 		int power = con.get_analog(ANALOG_LEFT_Y);
 		int turn = con.get_analog(ANALOG_RIGHT_X);
@@ -82,11 +88,12 @@ void opcontrol() {
 
 
 		if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) {
-			INTAKE.move(100);
+			INTAKE.move(127);
 		}
-		else {
-			INTAKE.move(0);
+		else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
+			INTAKE.move(-127);
 		}
+		else INTAKE.move(0);
 
 		delay(5);
 	}	
