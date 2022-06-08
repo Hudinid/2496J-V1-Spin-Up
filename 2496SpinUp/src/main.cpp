@@ -1,4 +1,8 @@
 #include "main.h"
+#include "pid.h"
+using namespace pros;
+using namespace std;
+using namespace glb;
 /**
  * A callback function for LLEMU's center button.
  *
@@ -62,6 +66,28 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+
 	
-	
-	}
+	while(true) {
+		int power = con.get_analog(ANALOG_LEFT_Y);
+		int turn = con.get_analog(ANALOG_RIGHT_X);
+
+		int left = power + turn;
+		int right = power - turn;
+
+		RF.move(right);
+		RB.move(right);
+		LF.move(left);
+		LB.move(left);
+
+
+		if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) {
+			INTAKE.move(100);
+		}
+		else {
+			INTAKE.move(0);
+		}
+
+		delay(5);
+	}	
+}
