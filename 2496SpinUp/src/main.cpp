@@ -82,7 +82,7 @@ void opcontrol() {
 		int right = power - turn;
 
 		RF.move(right);
-		RB.move(right);
+		RB.move(right); // hi
 		LF.move(left);
 		LB.move(left);
 
