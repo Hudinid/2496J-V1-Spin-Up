@@ -10,26 +10,27 @@ using namespace pros;
 
 void spinToBlue() {
     double hue = optical.get_hue(); 
-
-    while(hue < 100 || hue > 200) {
+    optical.set_led_pwm(25);
+    while(hue < 80 || hue > 200) {
         hue = optical.get_hue();
-        INTAKE.move(127);
+        INTAKE.move(67);
         delay(5);
     }
-    INTAKE.stop();
+    INTAKE.move(0);
 
 }
 
 void spinToRed() {
     double hue = optical.get_hue(); 
+    optical.set_led_pwm(25);
 
-    while(hue > 80) {
+    while(hue > 70) {
         hue = optical.get_hue();
-        INTAKE.move(127);
+        INTAKE.move(67);
         delay(5);
     }
 
-    INTAKE.stop();
+    INTAKE.move(0);
 
 }
 

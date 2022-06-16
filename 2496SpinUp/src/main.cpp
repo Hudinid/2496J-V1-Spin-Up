@@ -70,6 +70,12 @@ void opcontrol() {
 	con.clear();
 	delay(50);
 	con.print(0, 0, "jeff don't int");
+	bool autoRoll = false;
+	bool hitToggle = false;
+	optical.set_led_pwm(25);
+	
+	double hue;
+
 	// delay(50);
 	// con.print(1, 0, "stay under the speed limit-vip");
 	// delay(50);
@@ -87,14 +93,35 @@ void opcontrol() {
 		LF.move(left);
 		LB.move(left);
 
+		if(!autoRoll) {
+			if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) {
+				INTAKE.move(127);
+			}
+			else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
+				INTAKE.move(-127);
+			}
+			else INTAKE.move(0);
+		}
+		else {
+			hue = optical.get_hue(); 
+			if(hue < 80 || hue > 200) {
+				hue = optical.get_hue();
+				INTAKE.move(67);
+				delay(5);
+			}
+			else {
+				autoRoll = false;
+				INTAKE.move(0);
+			}
+		}
 
-		if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) {
-			INTAKE.move(127);
+		if(con.get_digital(E_CONTROLLER_DIGITAL_A)) {
+			if(!hitToggle) {
+				hitToggle = true;
+				autoRoll = !autoRoll;
+			}
 		}
-		else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
-			INTAKE.move(-127);
-		}
-		else INTAKE.move(0);
+		else hitToggle = false;
 
 		delay(5);
 	}	
