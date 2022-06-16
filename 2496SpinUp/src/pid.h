@@ -1,22 +1,36 @@
 #include "main.h"
+#include "global.h"
+#include <cmath>
+
+#ifndef _PID_
+#define _PID_
+using namespace std;
+using namespace glb;
 using namespace pros;
-#ifndef _GLOBALS_
-#define _GLOBALS_
 
-namespace glb {
+void spinToBlue() {
+    double hue = optical.get_hue(); 
 
-    #define P_RF 14
-    #define P_RB 13
-    #define P_LF 20
-    #define P_LB 15
-    #define P_INTAKE 12
-
-    Motor RF (P_RF, E_MOTOR_GEARSET_06, 1);
-    Motor RB (P_RB, E_MOTOR_GEARSET_06, 1);
-    Motor LF (P_LF, E_MOTOR_GEARSET_06);
-    Motor LB (P_LB, E_MOTOR_GEARSET_06);
-    Motor INTAKE (P_INTAKE, E_MOTOR_GEARSET_18, true); 
-    Controller con (E_CONTROLLER_MASTER);
+    while(hue < 100 || hue > 200) {
+        hue = optical.get_hue();
+        INTAKE.move(127);
+        delay(5);
+    }
+    INTAKE.stop();
 
 }
+
+void spinToRed() {
+    double hue = optical.get_hue(); 
+
+    while(hue > 80) {
+        hue = optical.get_hue();
+        INTAKE.move(127);
+        delay(5);
+    }
+
+    INTAKE.stop();
+
+}
+
 #endif

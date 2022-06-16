@@ -1,4 +1,5 @@
 #include "main.h"
+#include "global.h"
 #include "pid.h"
 using namespace pros;
 using namespace std;
