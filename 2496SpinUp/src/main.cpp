@@ -68,7 +68,7 @@ void autonomous() {}
 void opcontrol() {
 	con.clear();
 	delay(50);
-	con.print(0, 0, "jeff don't int");
+	con.print(0, 0, "jefferson");
 	// delay(50);
 	// con.print(1, 0, "stay under the speed limit-vip");
 	// delay(50);
@@ -86,6 +86,20 @@ void opcontrol() {
 		LF.move(left);
 		LB.move(left);
 
+		if(con.get_digital(E_CONTROLLER_DIGITAL_L1)) {
+			F1.move(127);
+			F2.move(127);
+		}
+
+		else if (con.get_digital(E_CONTROLLER_DIGITAL_L2)) {
+			F1.move(-127);
+			F2.move(-127);
+		}
+		else {
+			F1.move(0);
+			F2.move(0);
+		}
+
 
 		if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) {
 			INTAKE.move(127);
@@ -94,6 +108,9 @@ void opcontrol() {
 			INTAKE.move(-127);
 		}
 		else INTAKE.move(0);
+
+		
+		
 
 		delay(5);
 	}	
