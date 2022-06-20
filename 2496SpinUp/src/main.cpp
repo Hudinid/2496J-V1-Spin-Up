@@ -123,6 +123,15 @@ void opcontrol() {
 		}
 		else hitToggle = false;
 
+
+		if(con.get_digital(E_CONTROLLER_DIGITAL_L1)) {
+			F1.move(127);
+			F2.move(127);
+		}
+		else {
+			F1.move(0);
+			F2.move(0);
+		}
 		delay(5);
 	}	
 }
