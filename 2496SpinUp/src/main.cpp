@@ -72,6 +72,9 @@ void opcontrol() {
 	con.print(0, 0, "jeff don't int");
 	bool autoRoll = false;
 	bool hitToggle = false;
+
+	bool toggleFlyWheel = false;
+	bool hitFlyWheelToggle = false;
 	optical.set_led_pwm(25);
 	
 	double hue;
@@ -93,6 +96,7 @@ void opcontrol() {
 		LF.move(left);
 		LB.move(left);
 
+		//
 		if(!autoRoll) {
 			if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) {
 				INTAKE.move(127);
@@ -123,8 +127,19 @@ void opcontrol() {
 		}
 		else hitToggle = false;
 
-
-		if(con.get_digital(E_CONTROLLER_DIGITAL_L1)) {
+		if(con.get_digital(E_CONTROLLER_DIGITAL_B)) {
+			if(!hitFlyWheelToggle) {
+				hitFlyWheelToggle = true;
+				toggleFlyWheel = !toggleFlyWheel;
+			}
+		}
+		else hitFlyWheelToggle = false;
+		
+		if(toggleFlyWheel) {
+			F1.move(127);
+			F2.move(127);
+		} 
+		else if(con.get_digital(E_CONTROLLER_DIGITAL_L1)) {
 			F1.move(127);
 			F2.move(127);
 		}
