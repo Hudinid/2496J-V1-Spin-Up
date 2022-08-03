@@ -72,7 +72,9 @@ void opcontrol() {
 	con.print(0, 0, "jeff don't int");
 	bool autoRoll = false;
 	bool hitToggle = false;
-
+	IDX.set_brake_mode(E_MOTOR_BRAKE_COAST);
+	F1.set_brake_mode(E_MOTOR_BRAKE_COAST);
+	F2.set_brake_mode(E_MOTOR_BRAKE_COAST);
 	bool toggleFlyWheel = false;
 	bool hitFlyWheelToggle = false;
 	optical.set_led_pwm(25);
@@ -84,6 +86,8 @@ void opcontrol() {
 	// delay(50);
 	// con.print(2, 0, "go over the speed limit-elkins");
 	// delay(50);
+	int flySpeed = 127;
+	int count;
 	while(true) {
 		int power = con.get_analog(ANALOG_LEFT_Y);
 		int turn = con.get_analog(ANALOG_RIGHT_X);
@@ -95,7 +99,9 @@ void opcontrol() {
 		RB.move(right); // hi
 		LF.move(left);
 		LB.move(left);
-
+		if(count % 50 == 0) {
+			con.print(1, 0, "%d", flySpeed);
+		}
 		//
 		if(!autoRoll) {
 			if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) {
@@ -133,11 +139,20 @@ void opcontrol() {
 				toggleFlyWheel = !toggleFlyWheel;
 			}
 		}
+		else if(con.get_digital(E_CONTROLLER_DIGITAL_Y)) {
+			if(!hitFlyWheelToggle) {
+				hitFlyWheelToggle = true;
+				flySpeed += 10;
+				if(flySpeed > 127) {
+					flySpeed = 0;
+				}
+			}
+		}
 		else hitFlyWheelToggle = false;
-		
+
 		if(toggleFlyWheel) {
-			F1.move(127);
-			F2.move(127);
+			F1.move(flySpeed);
+			F2.move(flySpeed);
 		} 
 		else if(con.get_digital(E_CONTROLLER_DIGITAL_L1)) {
 			F1.move(127);
@@ -147,6 +162,17 @@ void opcontrol() {
 			F1.move(0);
 			F2.move(0);
 		}
+		// delay(5);
+
+		if(con.get_digital(E_CONTROLLER_DIGITAL_L2)) {
+			IDX.move(-50);
+		}
+		else {
+			IDX.move(0);
+		}
+
+		count ++;
 		delay(5);
+
 	}	
 }

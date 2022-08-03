@@ -13,15 +13,18 @@ namespace glb {
     #define P_OPTICAL 10
     #define P_FLYWHEEL1 4
     #define P_FLYWHEEL2 18
-    
+    #define P_IDX 8
+
     Motor RF (P_RF, E_MOTOR_GEARSET_06, 1);
     Motor RB (P_RB, E_MOTOR_GEARSET_06, 1);
     Motor LF (P_LF, E_MOTOR_GEARSET_06);
     Motor LB (P_LB, E_MOTOR_GEARSET_06);
     Motor F1 (P_FLYWHEEL1, E_MOTOR_GEARSET_06, 1);
     Motor F2 (P_FLYWHEEL2, E_MOTOR_GEARSET_06, 1);
-    Motor INTAKE (P_INTAKE, E_MOTOR_GEARSET_18, true); 
+    Motor INTAKE (P_INTAKE, E_MOTOR_GEARSET_18, true);
+    Motor IDX (P_IDX, E_MOTOR_GEARSET_18); 
     Controller con (E_CONTROLLER_MASTER);
     Optical optical (P_OPTICAL);
+
 }
 #endif
