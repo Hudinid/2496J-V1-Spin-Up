@@ -139,12 +139,21 @@ void opcontrol() {
 				toggleFlyWheel = !toggleFlyWheel;
 			}
 		}
-		else if(con.get_digital(E_CONTROLLER_DIGITAL_Y)) {
+		else if(con.get_digital(E_CONTROLLER_DIGITAL_UP)) {
 			if(!hitFlyWheelToggle) {
 				hitFlyWheelToggle = true;
 				flySpeed += 10;
 				if(flySpeed > 127) {
 					flySpeed = 0;
+				}
+			}
+		}
+		else if(con.get_digital(E_CONTROLLER_DIGITAL_DOWN)) { 
+			if(!hitFlyWheelToggle) {
+				hitFlyWheelToggle = true;
+				flySpeed -=10;
+				if(flySpeed < 0) { 
+				    flySpeed = 127;
 				}
 			}
 		}
@@ -165,7 +174,7 @@ void opcontrol() {
 		// delay(5);
 
 		if(con.get_digital(E_CONTROLLER_DIGITAL_L2)) {
-			IDX.move(-50);
+			IDX.move(-87);
 		}
 		else {
 			IDX.move(0);
