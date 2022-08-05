@@ -89,22 +89,30 @@ void opcontrol() {
 	int flySpeed = 127;
 	int count;
 	while(true) {
-		int power = con.get_analog(ANALOG_LEFT_Y);
-		int turn = con.get_analog(ANALOG_RIGHT_X);
+		int power = con.get_analog(ANALOG_LEFT_Y); // left joystick y axis is power
+		int turn = con.get_analog(ANALOG_RIGHT_X); // right joystick x axis controls turn
 
-		int left = power + turn;
-		int right = power - turn;
+		int left = power + turn; // implement turning
+		int right = power - turn; 
 
 		RF.move(right);
 		RB.move(right); // hi
 		LF.move(left);
 		LB.move(left);
+
+		//Display Flywheel speed
 		if(count % 50 == 0) {
+			
+			con.clear();
+			delay(50);
+			con.print(0, 0, "jeff don't int");
+			delay(50);
 			con.print(1, 0, "%d", flySpeed);
 		}
-		//
-		if(!autoRoll) {
-			if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) {
+
+		//Roller Control
+		if(!autoRoll) { // if the autoroller is not on
+			if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) { // then allow for manual control through R1 and R2
 				INTAKE.move(127);
 			}
 			else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
@@ -112,33 +120,34 @@ void opcontrol() {
 			}
 			else INTAKE.move(0);
 		}
-		else {
-			hue = optical.get_hue(); 
-			if(hue < 80 || hue > 200) {
-				hue = optical.get_hue();
-				INTAKE.move(67);
+		else { // otherwise run the code for autoroller
+			hue = optical.get_hue();  // get the color that the optical is currently looking at
+			if(hue < 80 || hue > 200) { // while the color is not within a certain range
+				hue = optical.get_hue(); // get color again
+				INTAKE.move(67); // move until the color is what we want
 				delay(5);
 			}
 			else {
-				autoRoll = false;
-				INTAKE.move(0);
+				autoRoll = false; // once the hue is the color we want, turn off the autoroller
+				INTAKE.move(0); // and make the roller stop moving
 			}
 		}
 
-		if(con.get_digital(E_CONTROLLER_DIGITAL_A)) {
+		if(con.get_digital(E_CONTROLLER_DIGITAL_A)) { // toggle the autoroller
 			if(!hitToggle) {
 				hitToggle = true;
 				autoRoll = !autoRoll;
 			}
 		}
-		else hitToggle = false;
+		else hitToggle = false; // safeguard so that only one press will be registered at a time
 
-		if(con.get_digital(E_CONTROLLER_DIGITAL_B)) {
-			if(!hitFlyWheelToggle) {
+		if(con.get_digital(E_CONTROLLER_DIGITAL_B)) { // toggle the automatic flywheel
+			if(!hitFlyWheelToggle) { 
 				hitFlyWheelToggle = true;
 				toggleFlyWheel = !toggleFlyWheel;
 			}
 		}
+
 		else if(con.get_digital(E_CONTROLLER_DIGITAL_UP)) {
 			if(!hitFlyWheelToggle) {
 				hitFlyWheelToggle = true;
@@ -148,6 +157,7 @@ void opcontrol() {
 				}
 			}
 		}
+
 		else if(con.get_digital(E_CONTROLLER_DIGITAL_DOWN)) { 
 			if(!hitFlyWheelToggle) {
 				hitFlyWheelToggle = true;
@@ -157,6 +167,7 @@ void opcontrol() {
 				}
 			}
 		}
+
 		else hitFlyWheelToggle = false;
 
 		if(toggleFlyWheel) {
@@ -171,16 +182,18 @@ void opcontrol() {
 			F1.move(0);
 			F2.move(0);
 		}
-		// delay(5);
+		
 
+		//Indexer Speed
 		if(con.get_digital(E_CONTROLLER_DIGITAL_L2)) {
-			IDX.move(-87);
+			IDX.move(-70);
 		}
 		else {
 			IDX.move(0);
 		}
 
 		count ++;
+
 		delay(5);
 
 	}	
