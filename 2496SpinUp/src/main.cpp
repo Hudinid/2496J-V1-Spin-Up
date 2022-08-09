@@ -105,7 +105,7 @@ void opcontrol() {
 			
 			con.clear();
 			delay(50);
-			con.print(0, 0, "jeff don't int");
+			con.print(0, 0, "%f", IDX.get_position());
 			delay(50);
 			con.print(1, 0, "%d", flySpeed);
 		}
@@ -147,7 +147,7 @@ void opcontrol() {
 				toggleFlyWheel = !toggleFlyWheel;
 			}
 		}
-
+//mm robot yes monke
 		else if(con.get_digital(E_CONTROLLER_DIGITAL_UP)) {
 			if(!hitFlyWheelToggle) {
 				hitFlyWheelToggle = true;
@@ -184,17 +184,12 @@ void opcontrol() {
 		}
 		
 
-		//Indexer Speed
+		//Indexer 
 		if(con.get_digital(E_CONTROLLER_DIGITAL_L2)) {
-			IDX.move(-70);
-		}
-		else {
-			IDX.move(0);
+			spinIndexer(-480, 50);
 		}
 
 		count ++;
-
 		delay(5);
-
 	}	
 }

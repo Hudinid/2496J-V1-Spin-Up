@@ -31,7 +31,10 @@ void spinToRed() {
     }
 
     INTAKE.move(0);
+}
 
+void spinIndexer(int target, int speed) {
+    IDX.move_relative(target, speed);
 }
 
 #endif
