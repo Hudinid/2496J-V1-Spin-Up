@@ -122,9 +122,9 @@ void opcontrol() {
 		}
 		else { // otherwise run the code for autoroller
 			hue = optical.get_hue();  // get the color that the optical is currently looking at
-			if(hue < 80 || hue > 200) { // while the color is not within a certain range
+			if(hue < 70 || hue > 200) { // while the color is not within a certain range
 				hue = optical.get_hue(); // get color again
-				INTAKE.move(67); // move until the color is what we want
+				INTAKE.move(64); // move until the color is what we want
 				delay(5);
 			}
 			else {
@@ -151,7 +151,7 @@ void opcontrol() {
 		else if(con.get_digital(E_CONTROLLER_DIGITAL_UP)) {
 			if(!hitFlyWheelToggle) {
 				hitFlyWheelToggle = true;
-				flySpeed += 10;
+				flySpeed += 5;
 				if(flySpeed > 127) {
 					flySpeed = 0;
 				}
@@ -161,7 +161,7 @@ void opcontrol() {
 		else if(con.get_digital(E_CONTROLLER_DIGITAL_DOWN)) { 
 			if(!hitFlyWheelToggle) {
 				hitFlyWheelToggle = true;
-				flySpeed -=10;
+				flySpeed -=5;
 				if(flySpeed < 0) { 
 				    flySpeed = 127;
 				}
@@ -183,11 +183,28 @@ void opcontrol() {
 			F2.move(0);
 		}
 		
-
-		//Indexer 
-		if(con.get_digital(E_CONTROLLER_DIGITAL_L2)) {
-			spinIndexer(-480, 50);
+		bool toggleIDX = false;
+		bool checkToggleIDX = false;
+		if(con.get_digital(E_CONTROLLER_DIGITAL_RIGHT)) { // toggle the automatic flywheel
+			if(!checkToggleIDX) { 
+				checkToggleIDX = true;
+				toggleIDX = !toggleIDX;
+			}
 		}
+		else checkToggleIDX = false;
+		//Indexer 
+		if(con.get_digital(E_CONTROLLER_DIGITAL_L2) && !toggleIDX) {
+			IDX.move(-70);
+		}
+		else if (con.get_digital(E_CONTROLLER_DIGITAL_L2) && toggleIDX) {
+			spinIndexer(-420, 80);
+		}
+		else {
+			if(!toggleIDX) {
+				IDX.move(0);
+			}
+		}
+
 
 		count ++;
 		delay(5);
