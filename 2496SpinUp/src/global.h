@@ -21,7 +21,7 @@ namespace glb {
     Motor LB (P_LB, E_MOTOR_GEARSET_06);
     Motor F1 (P_FLYWHEEL1, E_MOTOR_GEARSET_06, 1);
     Motor F2 (P_FLYWHEEL2, E_MOTOR_GEARSET_06, 1);
-    Motor INTAKE (P_INTAKE, E_MOTOR_GEARSET_18, true);
+    Motor INTAKE (P_INTAKE, E_MOTOR_GEARSET_06, true);
     Motor IDX (P_IDX, E_MOTOR_GEARSET_18); 
     Controller con (E_CONTROLLER_MASTER);
     Optical optical (P_OPTICAL);

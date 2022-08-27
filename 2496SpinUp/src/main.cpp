@@ -89,9 +89,12 @@ void opcontrol() {
 	int flySpeed = 127;
 	int count;
 	while(true) {
-		int power = con.get_analog(ANALOG_LEFT_Y); // left joystick y axis is power
+		int power = con.get_analog(ANALOG_LEFT_Y); // left joystick y axis is powe
 		int turn = con.get_analog(ANALOG_RIGHT_X); // right joystick x axis controls turn
 
+		if (abs(turn) < 90) {
+			turn = turn / 2;
+		}
 		int left = power + turn; // implement turning
 		int right = power - turn; 
 
@@ -105,7 +108,7 @@ void opcontrol() {
 			
 			con.clear();
 			delay(50);
-			con.print(0, 0, "%f", IDX.get_position());
+			con.print(0, 0, "%f", turn);
 			delay(50);
 			con.print(1, 0, "%d", flySpeed);
 		}
@@ -151,7 +154,7 @@ void opcontrol() {
 		else if(con.get_digital(E_CONTROLLER_DIGITAL_UP)) {
 			if(!hitFlyWheelToggle) {
 				hitFlyWheelToggle = true;
-				flySpeed += 5;
+				flySpeed += 1;
 				if(flySpeed > 127) {
 					flySpeed = 0;
 				}
@@ -161,7 +164,7 @@ void opcontrol() {
 		else if(con.get_digital(E_CONTROLLER_DIGITAL_DOWN)) { 
 			if(!hitFlyWheelToggle) {
 				hitFlyWheelToggle = true;
-				flySpeed -=5;
+				flySpeed -= 1;
 				if(flySpeed < 0) { 
 				    flySpeed = 127;
 				}
@@ -194,7 +197,7 @@ void opcontrol() {
 		else checkToggleIDX = false;
 		//Indexer 
 		if(con.get_digital(E_CONTROLLER_DIGITAL_L2) && !toggleIDX) {
-			IDX.move(-70);
+			IDX.move(-55);
 		}
 		else if (con.get_digital(E_CONTROLLER_DIGITAL_L2) && toggleIDX) {
 			spinIndexer(-420, 80);
