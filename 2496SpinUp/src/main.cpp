@@ -80,7 +80,7 @@ void opcontrol() {
 	optical.set_led_pwm(25);
 	
 	double hue;
-
+	double heading = imu.get_heading();
 	// delay(50);
 	// con.print(1, 0, "stay under the speed limit-vip");
 	// delay(50);
@@ -108,7 +108,7 @@ void opcontrol() {
 			
 			con.clear();
 			delay(50);
-			con.print(0, 0, "%f", turn);
+			con.print(0, 0, "%f", imu.get_heading());
 			delay(50);
 			con.print(1, 0, "%d", flySpeed);
 		}
