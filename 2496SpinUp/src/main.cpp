@@ -80,7 +80,7 @@ void opcontrol() {
 	optical.set_led_pwm(25);
 	
 	double hue;
-	double heading = imu.get_heading();
+	double global_heading = 0;
 	// delay(50);
 	// con.print(1, 0, "stay under the speed limit-vip");
 	// delay(50);
@@ -206,6 +206,10 @@ void opcontrol() {
 			if(!toggleIDX) {
 				IDX.move(0);
 			}
+		}
+
+		if(con.get_digital(E_CONTROLLER_DIGITAL_LEFT)) {
+			PIDturn(90, global_heading);
 		}
 
 
