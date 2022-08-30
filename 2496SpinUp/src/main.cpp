@@ -67,6 +67,10 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+	imu.reset();
+	while(imu.is_calibrating()) {
+		delay(5);
+	}
 	con.clear();
 	delay(50);
 	con.print(0, 0, "jeff don't int");
@@ -209,7 +213,7 @@ void opcontrol() {
 		}
 
 		if(con.get_digital(E_CONTROLLER_DIGITAL_LEFT)) {
-			PIDturn(90, global_heading);
+			relTurn(90);
 		}
 
 
