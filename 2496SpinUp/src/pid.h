@@ -73,14 +73,14 @@ void relTurn(int target) {
     double curr = imu.get_heading();
     target = target + 180;
     double error = target - curr;
-    double kP = 1;
-    double kI = 0.01;
-    double kD = 25;
+    double kP = 0.8;
+    double kI = 0.0022;
+    double kD = 0.0;
     int power;
     int prevError = 0;
     int integral = 0;
     int count = 0;
-    while (abs(error) > 1.5) {
+    while (abs(error) > 1) {
         curr = imu.get_heading();
         error = target - curr;
         power = kP * error + kI * integral + kD * prevError;
