@@ -90,7 +90,7 @@ void opcontrol() {
 	// delay(50);
 	// con.print(2, 0, "go over the speed limit-elkins");
 	// delay(50);
-	int flySpeed = 127;
+	int flySpeed = 103;
 	int count;
 	while(true) {
 		int power = con.get_analog(ANALOG_LEFT_Y); // left joystick y axis is powe
@@ -213,7 +213,8 @@ void opcontrol() {
 		}
 
 		if(con.get_digital(E_CONTROLLER_DIGITAL_LEFT)) {
-			relTurn(90);
+			pidturn(145);
+			// relTurn(90);
 		}
 
 
