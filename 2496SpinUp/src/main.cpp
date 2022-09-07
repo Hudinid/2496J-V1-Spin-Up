@@ -213,7 +213,7 @@ void opcontrol() {
 		}
 
 		if(con.get_digital(E_CONTROLLER_DIGITAL_LEFT)) {
-			relTurn(90);
+			pidturn(90);
 		}
 
 
