@@ -115,7 +115,8 @@ void spinIndexer(int target, int speed) {
 //     while (abs(error) > 1) {
 //         curr = imu.get_heading();
 //         error = target - curr;
-//         power = kP * error + kI * integral + kD * prevError;
+//         int derivative = error - prevError;
+//         power = kP * error + kI * integral + kD * derivative;
 //         if(count % 50 == 0) {
 //             con.print(0, 0, "Heading: %f", curr);
 //         }
@@ -131,26 +132,31 @@ int signOf(int num) {
     if (num < 0) return -1;
     return 0;
 }
-float calc(float target, float input, float maxI, int integralKI){
+
+float calc(float target, float input, float maxI, int integralKI) {
     prev_error = error;   
     error = target - input;
+
     prev_derivative = derivative; derivative = error - prev_error; 
 
-    if(std::abs(error) < integralKI){
+    if(abs(error) < integralKI) {
         integral += error;
     }
-    else{
+    else {
         integral = 0; 
     }
-    if(integral >= 0){
-        integral = std::min(integral, maxI);
+
+    if (integral >= 0) {
+        integral = min(integral, maxI);
     }
-    else{
-        integral = std::max(integral,-maxI);
+    else {
+        integral = max(integral,-maxI);
     }
-    if (std::abs(kp*error) <= MINSPEED) {
+    
+    if (abs(kp*error) <= MINSPEED) {
         power = signOf(error)*MINSPEED + ki*integral + kd*derivative;
-    } else {
+    } 
+    else {
         power = kp*error + ki*integral + kd*derivative;
     }
 
@@ -248,7 +254,7 @@ void pidturn (float target){
 
     start = imu.get_rotation();
 
-    while(true){
+    while(true) { 
         position = imu.get_rotation();
 
         voltage = calc(target, position, MAX_INTEGRAL, INTEGRAL_KI);
@@ -257,8 +263,10 @@ void pidturn (float target){
 
         if (abs(target-position) <= 0.75) count++;
         if (count >= COUNT_CONST) break; //|| runtime_count >= MAX_RUNTIME
+
         if (abs(target-position) <= 2) timeout++;
         if(timeout >= MAXTIME) break;
+
         if (runtime_count % 5 == 0 && !(runtime_count % 10 == 0)) {
             con.clear();
         } else if (runtime_count % 10 == 0) {
@@ -272,6 +280,14 @@ void pidturn (float target){
     }
     chas_move(0,0);
 }
+
+//Needed autons - fullAwp left, fullAwp right, elims left, elims right, halfAwp left, halfAwp right
+// to qual for an awp - need 2 discs in high goal, and both rollers controlled
+// 
+// elims awp - fire 2 -> spin roller -> intake and shoot more, could skip the roller as 2 discs = 1 roller
+// and could result in more points
+// half awp - same as elim awp ? fire 2, spin roller, intake and shoot more
+ 
 
 
 #endif

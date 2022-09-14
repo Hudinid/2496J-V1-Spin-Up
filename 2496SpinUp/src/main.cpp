@@ -90,15 +90,15 @@ void opcontrol() {
 	// delay(50);
 	// con.print(2, 0, "go over the speed limit-elkins");
 	// delay(50);
-	int flySpeed = 103;
+	int flySpeed = 106;
 	int count;
+	
 	while(true) {
 		int power = con.get_analog(ANALOG_LEFT_Y); // left joystick y axis is powe
-		int turn = con.get_analog(ANALOG_RIGHT_X); // right joystick x axis controls turn
-
-		if (abs(turn) < 90) {
-			turn = turn / 2;
-		}
+		int valForTurn = con.get_analog(ANALOG_RIGHT_X); // right joystick x axis controls turn
+		
+		double turn = (3000*valForTurn + 0.2*pow(valForTurn, 3)); 
+		turn /= 4000;
 		int left = power + turn; // implement turning
 		int right = power - turn; 
 
@@ -112,7 +112,7 @@ void opcontrol() {
 			
 			con.clear();
 			delay(50);
-			con.print(0, 0, "%f", imu.get_heading());
+			con.print(0, 0, "%f", turn);
 			delay(50);
 			con.print(1, 0, "%d", flySpeed);
 		}
@@ -181,10 +181,6 @@ void opcontrol() {
 			F1.move(flySpeed);
 			F2.move(flySpeed);
 		} 
-		else if(con.get_digital(E_CONTROLLER_DIGITAL_L1)) {
-			F1.move(127);
-			F2.move(127);
-		}
 		else {
 			F1.move(0);
 			F2.move(0);
