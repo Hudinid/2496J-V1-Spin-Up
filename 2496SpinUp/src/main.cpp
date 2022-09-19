@@ -90,7 +90,7 @@ void opcontrol() {
 	// delay(50);
 	// con.print(2, 0, "go over the speed limit-elkins");
 	// delay(50);
-	int flySpeed = 106;
+	int flySpeed = 103;
 	int count;
 	
 	while(true) {
@@ -148,7 +148,7 @@ void opcontrol() {
 		}
 		else hitToggle = false; // safeguard so that only one press will be registered at a time
 
-		if(con.get_digital(E_CONTROLLER_DIGITAL_B)) { // toggle the automatic flywheel
+		if(con.get_digital(E_CONTROLLER_DIGITAL_L1)) { // toggle the automatic flywheel
 			if(!hitFlyWheelToggle) { 
 				hitFlyWheelToggle = true;
 				toggleFlyWheel = !toggleFlyWheel;
@@ -197,11 +197,15 @@ void opcontrol() {
 		else checkToggleIDX = false;
 		//Indexer 
 		if(con.get_digital(E_CONTROLLER_DIGITAL_L2) && !toggleIDX) {
+			IDX.move(-75);
+		}
+		else if(con.get_digital(E_CONTROLLER_DIGITAL_B)){
 			IDX.move(-55);
 		}
-		else if (con.get_digital(E_CONTROLLER_DIGITAL_L2) && toggleIDX) {
-			spinIndexer(-420, 80);
-		}
+		// else if (con.get_digital(E_CONTROLLER_DIGITAL_L2) && toggleIDX) {
+		// 	IDX.move(-55);
+		// 	// spinIndexer(-420, 80);
+		// }
 		else {
 			if(!toggleIDX) {
 				IDX.move(0);
