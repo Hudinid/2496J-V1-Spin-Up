@@ -10,7 +10,7 @@ namespace glb {
     #define P_LF 20
     #define P_LB 15
     #define P_INTAKE 12
-    #define P_OPTICAL 10
+    #define P_OPTICAL 21
     #define P_FLYWHEEL1 4
     #define P_FLYWHEEL2 18
     #define P_IDX 8

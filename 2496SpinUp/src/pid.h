@@ -65,68 +65,22 @@ void spinToRed() {
     INTAKE.move(0);
 }
 
-void spinIndexer(int target, int speed) {
-    IDX.move_relative(target, speed);
+void spinIndexer(int times, int speed) {
+    IDX.move_relative(times*480, speed);
 }
 
-// void PIDturn(int target, int currHeading) { // 45, 90 
-//     double kP = 0.2;
-//     double kI = 0.1;
-//     double kD = 0;
-//     int integral = 0;
-    
-//     target = target - currHeading;
-//     target += 180;
-//     double curr = imu.get_rotation();
-//     double error = target - curr;
-//     int power;
-//     int prevError = 0;
-//     int count = 0; 
-//     int count2 = 0;
-//     con.clear();
-//     while( abs(error) > 1.5 ) {
-//         curr = imu.get_rotation();
-//         error = target - curr;
-//         power = kP * error + kI * integral + kD * prevError;
-//         prevError = error;
-//         if(count % 50 == 0) {
-//             con.print(0, 0, "Heading: %f", error);
-//         }
-//         integral += error;
-//         count++;
-//         LF.move(power); LB.move(power); RF.move(-power); RB.move(-power);
-//         delay(5);
-//     }
-// }
+void spinFlyWheel(int speed) {
+    F1.move(speed);
+    F2.move(speed);
+}
 
-// void relTurn(int target) {
-//     con.clear();
-//     imu.set_heading(180);
-//     double curr = imu.get_heading();
-//     target = target + 180;
-//     double error = target - curr;
-//     double kP = 0.8;
-//     double kI = 0.0022;
-//     double kD = 0.0;
-//     int power;
-//     int prevError = 0;
-//     int integral = 0;
-//     int count = 0;
-//     while (abs(error) > 1) {
-//         curr = imu.get_heading();
-//         error = target - curr;
-//         int derivative = error - prevError;
-//         power = kP * error + kI * integral + kD * derivative;
-//         if(count % 50 == 0) {
-//             con.print(0, 0, "Heading: %f", curr);
-//         }
-//         integral += error;
-//         prevError = error;
-//         delay(5);
-//         count += 1;
-//         LF.move(power); LB.move(power); RF.move(-power); RB.move(-power);
-//     }
-// }
+void stopFlyWheel() {
+    F1.set_brake_mode(E_MOTOR_BRAKE_COAST);
+    F2.set_brake_mode(E_MOTOR_BRAKE_COAST);
+    F1.move_velocity(0);
+    F2.move_velocity(0);
+}
+
 int signOf(int num) {
     if (num > 0) return 1;
     if (num < 0) return -1;
@@ -288,6 +242,8 @@ void pidturn (float target){
 // and could result in more points
 // half awp - same as elim awp ? fire 2, spin roller, intake and shoot more
  
+void fullAwp() {
 
+}
 
 #endif
