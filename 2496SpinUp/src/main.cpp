@@ -74,8 +74,11 @@ void opcontrol() {
 	con.clear();
 	delay(50);
 	con.print(0, 0, "jeff don't int");
+
 	bool autoRoll = false;
 	bool hitToggle = false;
+	bool hitToggleFSpeed = false;
+
 	IDX.set_brake_mode(E_MOTOR_BRAKE_COAST);
 	F1.set_brake_mode(E_MOTOR_BRAKE_COAST);
 	F2.set_brake_mode(E_MOTOR_BRAKE_COAST);
@@ -92,7 +95,8 @@ void opcontrol() {
 	// delay(50);
 	int flySpeed = 103;
 	int count;
-	
+	int setFSpeed = 0;
+	int flywheelSpeeds = 2;
 	while(true) {
 		int power = con.get_analog(ANALOG_LEFT_Y); // left joystick y axis is powe
 		int valForTurn = con.get_analog(ANALOG_RIGHT_X); // right joystick x axis controls turn
@@ -211,6 +215,23 @@ void opcontrol() {
 				IDX.move(0);
 			}
 		}
+
+		if(con.get_digital(E_CONTROLLER_DIGITAL_Y)) {
+			if(!hitToggleFSpeed) {
+				hitToggleFSpeed = true;
+				setFSpeed ++;
+				if(setFSpeed >= flywheelSpeeds) { 
+					setFSpeed = 0;
+					flySpeed = 101;
+				}
+				else if (setFSpeed == 1) {
+					flySpeed = 93;
+				}
+				
+			}
+
+		}
+		else hitToggleFSpeed = false;
 
 		if(con.get_digital(E_CONTROLLER_DIGITAL_LEFT)) {
 			pidturn(90);
