@@ -1,4 +1,5 @@
 #include "main.h"
+#include "global.h"
 #include "pid.h"
 using namespace pros;
 using namespace std;
@@ -66,52 +67,178 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+	imu.reset();
+	while(imu.is_calibrating()) {
+		delay(5);
+	}
 	con.clear();
 	delay(50);
-	con.print(0, 0, "jefferson");
+	con.print(0, 0, "jeff don't int");
+
+	bool autoRoll = false;
+	bool hitToggle = false;
+	bool hitToggleFSpeed = false;
+
+	IDX.set_brake_mode(E_MOTOR_BRAKE_COAST);
+	F1.set_brake_mode(E_MOTOR_BRAKE_COAST);
+	F2.set_brake_mode(E_MOTOR_BRAKE_COAST);
+	bool toggleFlyWheel = false;
+	bool hitFlyWheelToggle = false;
+	optical.set_led_pwm(25);
+	
+	double hue;
+	double global_heading = 0;
 	// delay(50);
 	// con.print(1, 0, "stay under the speed limit-vip");
 	// delay(50);
 	// con.print(2, 0, "go over the speed limit-elkins");
 	// delay(50);
+	int flySpeed = 103;
+	int count;
+	int setFSpeed = 0;
+	int flywheelSpeeds = 2;
 	while(true) {
-		int power = con.get_analog(ANALOG_LEFT_Y);
-		int turn = con.get_analog(ANALOG_RIGHT_X);
-
-		int left = power + turn;
-		int right = power - turn;
+		int power = con.get_analog(ANALOG_LEFT_Y); // left joystick y axis is powe
+		int valForTurn = con.get_analog(ANALOG_RIGHT_X); // right joystick x axis controls turn
+		
+		double turn = (3000*valForTurn + 0.2*pow(valForTurn, 3)); 
+		turn /= 4000;
+		int left = power + turn; // implement turning
+		int right = power - turn; 
 
 		RF.move(right);
-		RB.move(right);
+		RB.move(right); // hi
 		LF.move(left);
 		LB.move(left);
 
-		if(con.get_digital(E_CONTROLLER_DIGITAL_L1)) {
-			F1.move(127);
-			F2.move(127);
+		//Display Flywheel speed
+		if(count % 50 == 0) {
+			
+			con.clear();
+			delay(50);
+			con.print(0, 0, "%f", turn);
+			delay(50);
+			con.print(1, 0, "%d", flySpeed);
 		}
 
-		else if (con.get_digital(E_CONTROLLER_DIGITAL_L2)) {
-			F1.move(-127);
-			F2.move(-127);
+		//Roller Control
+		if(!autoRoll) { // if the autoroller is not on
+			if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) { // then allow for manual control through R1 and R2
+				INTAKE.move(127);
+			}
+			else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
+				INTAKE.move(-127);
+			}
+			else INTAKE.move(0);
 		}
+		else { // otherwise run the code for autoroller
+			hue = optical.get_hue();  // get the color that the optical is currently looking at
+			if(hue < 70 || hue > 200) { // while the color is not within a certain range
+				hue = optical.get_hue(); // get color again
+				INTAKE.move(64); // move until the color is what we want
+				delay(5);
+			}
+			else {
+				autoRoll = false; // once the hue is the color we want, turn off the autoroller
+				INTAKE.move(0); // and make the roller stop moving
+			}
+		}
+
+		if(con.get_digital(E_CONTROLLER_DIGITAL_A)) { // toggle the autoroller
+			if(!hitToggle) {
+				hitToggle = true;
+				autoRoll = !autoRoll;
+			}
+		}
+		else hitToggle = false; // safeguard so that only one press will be registered at a time
+
+		if(con.get_digital(E_CONTROLLER_DIGITAL_L1)) { // toggle the automatic flywheel
+			if(!hitFlyWheelToggle) { 
+				hitFlyWheelToggle = true;
+				toggleFlyWheel = !toggleFlyWheel;
+			}
+		}
+//mm robot yes monke
+		else if(con.get_digital(E_CONTROLLER_DIGITAL_UP)) {
+			if(!hitFlyWheelToggle) {
+				hitFlyWheelToggle = true;
+				flySpeed += 1;
+				if(flySpeed > 127) {
+					flySpeed = 0;
+				}
+			}
+		}
+
+		else if(con.get_digital(E_CONTROLLER_DIGITAL_DOWN)) { 
+			if(!hitFlyWheelToggle) {
+				hitFlyWheelToggle = true;
+				flySpeed -= 1;
+				if(flySpeed < 0) { 
+				    flySpeed = 127;
+				}
+			}
+		}
+
+		else hitFlyWheelToggle = false;
+
+		if(toggleFlyWheel) {
+			F1.move(flySpeed);
+			F2.move(flySpeed);
+		} 
 		else {
 			F1.move(0);
 			F2.move(0);
 		}
-
-
-		if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) {
-			INTAKE.move(127);
-		}
-		else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
-			INTAKE.move(-127);
-		}
-		else INTAKE.move(0);
-
 		
-		
+		bool toggleIDX = false;
+		bool checkToggleIDX = false;
+		if(con.get_digital(E_CONTROLLER_DIGITAL_RIGHT)) { // toggle the automatic flywheel
+			if(!checkToggleIDX) { 
+				checkToggleIDX = true;
+				toggleIDX = !toggleIDX;
+			}
+		}
+		else checkToggleIDX = false;
+		//Indexer 
+		if(con.get_digital(E_CONTROLLER_DIGITAL_L2) && !toggleIDX) {
+			IDX.move(-75);
+		}
+		else if(con.get_digital(E_CONTROLLER_DIGITAL_B)){
+			IDX.move(-55);
+		}
+		// else if (con.get_digital(E_CONTROLLER_DIGITAL_L2) && toggleIDX) {
+		// 	IDX.move(-55);
+		// 	// spinIndexer(-420, 80);
+		// }
+		else {
+			if(!toggleIDX) {
+				IDX.move(0);
+			}
+		}
 
+		if(con.get_digital(E_CONTROLLER_DIGITAL_Y)) {
+			if(!hitToggleFSpeed) {
+				hitToggleFSpeed = true;
+				setFSpeed ++;
+				if(setFSpeed >= flywheelSpeeds) { 
+					setFSpeed = 0;
+					flySpeed = 101;
+				}
+				else if (setFSpeed == 1) {
+					flySpeed = 93;
+				}
+				
+			}
+
+		}
+		else hitToggleFSpeed = false;
+
+		if(con.get_digital(E_CONTROLLER_DIGITAL_LEFT)) {
+			pidturn(90);
+		}
+
+
+		count ++;
 		delay(5);
 	}	
 }
