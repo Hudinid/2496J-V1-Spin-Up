@@ -20,8 +20,10 @@ void on_center_button() {
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-}
 
+	EXPANSION.set(true);
+}
+	
 /**
  * Runs while the robot is in the disabled state of Field Management System or
  * the VEX Competition Switch, following either autonomous or opcontrol. When
@@ -39,7 +41,7 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {}
-
+	
 /**
  * Runs the user autonomous code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -233,9 +235,20 @@ void opcontrol() {
 		}
 		else hitToggleFSpeed = false;
 
+		 
 		if(con.get_digital(E_CONTROLLER_DIGITAL_LEFT)) {
 			pidturn(90);
 		}
+
+		//Rohan - pneumatic prototype
+		if(con.get_digital(E_CONTROLLER_DIGITAL_UP)) {
+			EXPANSION.set(false)
+		}
+		else {
+			
+		}	
+
+		
 
 
 		count ++;

@@ -15,6 +15,7 @@ namespace glb {
     #define P_FLYWHEEL2 18
     #define P_IDX 8
     #define P_IMU 17
+    #define P_EXPANSION 'A'
 
     Motor RF (P_RF, E_MOTOR_GEARSET_06, 1);
     Motor RB (P_RB, E_MOTOR_GEARSET_06, 1);
@@ -27,6 +28,8 @@ namespace glb {
     Controller con (E_CONTROLLER_MASTER);
     Optical optical (P_OPTICAL);
     Imu imu(P_IMU);
+    ADIDigitalOut expansion(P_EXPANSION);
+
     
 }
 #endif
