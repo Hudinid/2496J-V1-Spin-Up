@@ -21,7 +21,7 @@ void on_center_button() {
  */
 void initialize() {
 
-	EXPANSION.set(true);
+	expansion.set_value(false);
 }
 	
 /**
@@ -241,8 +241,8 @@ void opcontrol() {
 		}
 
 		//Rohan - pneumatic prototype
-		if(con.get_digital(E_CONTROLLER_DIGITAL_UP)) {
-			EXPANSION.set(false)
+		if(con.get_digital(E_CONTROLLER_DIGITAL_X)) {
+			expansion.set_value(true);
 		}
 		else {
 			
