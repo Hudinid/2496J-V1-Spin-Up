@@ -240,7 +240,7 @@ void opcontrol() {
 			pidturn(90);
 		}
 
-		//Rohan - pneumatic prototype
+		
 		if(con.get_digital(E_CONTROLLER_DIGITAL_X)) {
 			expansion.set_value(true);
 		}
