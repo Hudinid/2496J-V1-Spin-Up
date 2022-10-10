@@ -40,6 +40,7 @@ int moveCount = 0;
 #define MINSPEED 0
 
 
+
 void spinToBlue() {
     double hue = optical.get_hue(); 
     optical.set_led_pwm(25);
@@ -69,7 +70,7 @@ void spinIndexer(int times, int speed) {
     IDX.move_relative(times*480, speed);
 }
 
-void spinFlyWheel(int speed) {
+void spinFlywheel(int speed) {
     F1.move(speed);
     F2.move(speed);
 }
@@ -79,6 +80,14 @@ void stopFlyWheel() {
     F2.set_brake_mode(E_MOTOR_BRAKE_COAST);
     F1.move_velocity(0);
     F2.move_velocity(0);
+}
+
+void moveIntake(int speed) { 
+    INTAKE.move(speed);
+}
+
+void stopIntake() {
+    INTAKE.move(0);
 }
 
 int signOf(int num) {
@@ -244,6 +253,49 @@ void pidturn (float target){
  
 void fullAwp() {
 
+}
+
+void redHalfAwpLeft() {
+    // spin flywheel
+    
+    spinFlywheel(114);
+    delay(3500);
+    // fire twice
+    
+    spinIndexer(-1, 55);
+    delay(2000);
+    spinIndexer(-1, 55);
+    delay(1000);
+    // drive back (possibly turn) and toggle roller
+    pidturn(-3);
+
+    RF.move(15);
+    LF.move(15);
+    RB.move(15);
+    LB.move(15);
+
+    moveIntake(-50);
+    delay(1000);
+    moveIntake(0);
+    spinToRed();
+    delay(150);
+    LF.move(0);
+    RF.move(0);
+    RB.move(0);
+    LB.move(0);
+
+    pidmove(5);
+    
+    pidturn(-135);
+    delay(5);
+    moveIntake(127);
+    pidmove(2000);
+    
+    // turn and face towards discs at mid
+    
+    // drive and intake
+    // face goal
+    // pray (fire discs at high goal)
 }
 
 #endif
