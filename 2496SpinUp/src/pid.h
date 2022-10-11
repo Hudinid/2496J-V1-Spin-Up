@@ -251,6 +251,7 @@ void pidturn (float target){
 // and could result in more points
 // half awp - same as elim awp ? fire 2, spin roller, intake and shoot more
  
+
 void fullAwp() {
 
 }
@@ -258,44 +259,60 @@ void fullAwp() {
 void redHalfAwpLeft() {
     // spin flywheel
     
-    spinFlywheel(114);
-    delay(3500);
+    spinFlywheel(110);
+    delay(2000);
     // fire twice
     
-    spinIndexer(-1, 55);
-    delay(2000);
-    spinIndexer(-1, 55);
-    delay(1000);
+    spinIndexer(-1, 60);
+    delay(1100);
+    spinIndexer(-1, 60);
+    delay(500);
     // drive back (possibly turn) and toggle roller
-    pidturn(-3);
+    pidturn(-6);
 
-    RF.move(15);
-    LF.move(15);
-    RB.move(15);
-    LB.move(15);
+    chas_move(30, 30);
 
     moveIntake(-50);
     delay(1000);
     moveIntake(0);
     spinToRed();
     delay(150);
-    LF.move(0);
-    RF.move(0);
-    RB.move(0);
-    LB.move(0);
+
+    chas_move(0, 0);
 
     pidmove(5);
     
-    pidturn(-135);
-    delay(5);
-    moveIntake(127);
-    pidmove(2000);
-    
     // turn and face towards discs at mid
     
+    pidturn(-135);
+    delay(5);
+
     // drive and intake
+
+    moveIntake(127);
+    pidmove(1500);
+
+
+    // move chassis forward to intake disc stack
+    chas_move(45, 45);
+    delay(1750);
+    spinFlywheel(93);
+    chas_move(0, 0);
+
+    pidturn(-33);
     // face goal
-    // pray (fire discs at high goal)
+    // pray (fire discs at high goal)s
+    
+    delay(500);
+
+    spinIndexer(-1, 60);
+    spinFlywheel(101);
+    delay(800);
+    
+    spinIndexer(-1, 60);
+    delay(1000);
+    spinIndexer(-1, 60);
 }
+
 
 #endif
