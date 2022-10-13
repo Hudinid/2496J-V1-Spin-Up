@@ -97,7 +97,7 @@ void opcontrol() {
 	// delay(50);
 	// con.print(2, 0, "go over the speed limit-elkins");
 	// delay(50);
-	int flySpeed = 93;
+	int flySpeed = 97;
 	int count;
 	int setFSpeed = 0;
 	int flywheelSpeeds = 2;
@@ -205,7 +205,7 @@ void opcontrol() {
 		else checkToggleIDX = false;
 		//Indexer 
 		if(con.get_digital(E_CONTROLLER_DIGITAL_L2) && !toggleIDX) {
-			IDX.move(-75);
+			IDX.move(-70);
 		}
 		else if(con.get_digital(E_CONTROLLER_DIGITAL_B)){
 			IDX.move(-55);
@@ -226,7 +226,7 @@ void opcontrol() {
 				setFSpeed ++;
 				if(setFSpeed >= flywheelSpeeds) { 
 					setFSpeed = 0;
-					flySpeed = 93;
+					flySpeed = 97;
 				}
 				else if (setFSpeed == 1) {
 					flySpeed = 87;
