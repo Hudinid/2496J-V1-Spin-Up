@@ -256,6 +256,28 @@ void fullAwp() {
 
 }
 
+void redHalfAwpRight() {
+
+    spinFlywheel(113);
+    pidturn(27);
+    delay(4500);
+    spinIndexer(-1, 60);
+    spinFlywheel(111);
+
+    delay(2000);
+    spinIndexer(-1, 60);
+    delay(800);
+    pidturn(-94);
+    pidmove(1275);
+    pidturn(0);
+    chas_move(30, 30);
+    moveIntake(-70);
+
+    delay(1500);
+    // chas_move(0, 0);
+    spinToRed();
+}
+
 void redHalfAwpLeft() {
     // spin flywheel
     
@@ -319,12 +341,13 @@ void redHalfAwpLeft() {
 void blueHalfAwpLeft() {
     // spin flywheel
     
-    spinFlywheel(110);
+    spinFlywheel(113);
     delay(2000);
     // fire twice
     
     spinIndexer(-1, 60);
-    delay(1100);
+    spinFlywheel(117);
+    delay(1200);
     spinIndexer(-1, 60);
     delay(500);
     // drive back (possibly turn) and toggle roller
@@ -356,7 +379,7 @@ void blueHalfAwpLeft() {
     // move chassis forward to intake disc stack
     chas_move(45, 45);
     delay(1750);
-    spinFlywheel(93);
+    spinFlywheel(98);
     chas_move(0, 0);
 
     pidturn(-33);
@@ -370,7 +393,8 @@ void blueHalfAwpLeft() {
     delay(800);
     
     spinIndexer(-1, 60);
-    delay(1000);
+    spinFlywheel(109);
+    delay(900);
     spinIndexer(-1, 60);
 }
 
