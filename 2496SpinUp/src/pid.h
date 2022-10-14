@@ -43,7 +43,7 @@ int moveCount = 0;
 
 void spinToBlue() {
     double hue = optical.get_hue(); 
-    optical.set_led_pwm(75);
+    optical.set_led_pwm(25);
     while(hue < 80 || hue > 220) {
         hue = optical.get_hue();
         INTAKE.move(50);
@@ -59,7 +59,7 @@ void spinToRed() {
 
     while(hue > 70) {
         hue = optical.get_hue();
-        INTAKE.move(67);
+        INTAKE.move(50);
         delay(5);
     }
 
@@ -258,7 +258,7 @@ void fullAwp() {
 
 void redHalfAwpRight() {
 
-    spinFlywheel(113);
+    spinFlywheel(112);
     pidturn(27);
     delay(4500);
     spinIndexer(-1, 60);
@@ -276,11 +276,12 @@ void redHalfAwpRight() {
     delay(1500);
     // chas_move(0, 0);
     spinToRed();
+
 }
 
 void blueHalfAwpRight() {
 
-    spinFlywheel(113);
+    spinFlywheel(112);
     pidturn(27);
     delay(4500);
     spinIndexer(-1, 60);
@@ -308,12 +309,12 @@ void redHalfAwpLeft() {
     // fire twice
     
     spinIndexer(-1, 60);
-    spinFlywheel(117);
-    delay(1200);
+    spinFlywheel(120);
+    delay(1225);
     spinIndexer(-1, 60);
     delay(500);
     // drive back (possibly turn) and toggle roller
-    pidturn(-6);
+    // pidturn(-6);
 
     chas_move(30, 30);
 
@@ -341,7 +342,7 @@ void redHalfAwpLeft() {
     // move chassis forward to intake disc stack
     chas_move(45, 45);
     delay(1750);
-    spinFlywheel(98);
+    spinFlywheel(94);
     chas_move(0, 0);
 
     pidturn(-33);
@@ -351,11 +352,11 @@ void redHalfAwpLeft() {
     delay(500);
 
     spinIndexer(-1, 60);
-    spinFlywheel(101);
+    spinFlywheel(98);
     delay(800);
     
     spinIndexer(-1, 60);
-    spinFlywheel(109);
+    spinFlywheel(103);
     delay(900);
     spinIndexer(-1, 60);
 }
@@ -363,13 +364,13 @@ void redHalfAwpLeft() {
 void blueHalfAwpLeft() {
     // spin flywheel
     
-    spinFlywheel(114);
+    spinFlywheel(113);
     delay(2000);
     // fire twice
     
     spinIndexer(-1, 60);
-    spinFlywheel(121);
-    delay(1200);
+    spinFlywheel(120);
+    delay(1225);
     spinIndexer(-1, 60);
     delay(500);
     // drive back (possibly turn) and toggle roller
@@ -401,7 +402,7 @@ void blueHalfAwpLeft() {
     // move chassis forward to intake disc stack
     chas_move(45, 45);
     delay(1750);
-    spinFlywheel(93);
+    spinFlywheel(94);
     chas_move(0, 0);
 
     pidturn(-33);
