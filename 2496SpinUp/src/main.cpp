@@ -29,7 +29,9 @@ void initialize() {
  * the VEX Competition Switch, following either autonomous or opcontrol. When
  * the robot is enabled, this task will exit.
  */
-void disabled() {}
+void disabled() {
+	imu.reset();
+}
 
 /**
  * Runs after initialize(), and before autonomous when connected to the Field
@@ -40,7 +42,54 @@ void disabled() {}
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
-void competition_initialize() {}
+int currAuton = 1;
+void competition_initialize() {
+	imu.reset();
+	while(imu.is_calibrating()) delay (5);
+
+	bool selected = true;
+	int localTime = 0;
+	int totalAutons = 5;
+	con.clear();
+
+	while(true) {
+
+		// if(button.get_value() == 0 || button2.get_value() == 0) {
+		// 	if(selected) {
+		// 		currAuton ++;
+		// 		if(currAuton == totalAutons+1) {
+		// 			currAuton = 1;
+		// 		}
+		// 		selected = false;
+		// 	}
+		// 	selected = false;
+		// }
+		// else selected = true;
+
+		if(localTime%50 == 0) {
+			// con.clear();
+			switch(currAuton) {
+				case (1):
+					con.print(0, 0, "Selected: %d Red Left", currAuton);
+					break;
+				case(2):
+					con.print(0, 0, "Selected: %d Red Right", currAuton);
+					break;
+				case(3):
+					con.print(0, 0, "Selected: %d Blue Left", currAuton);
+					break;
+				case(4):
+					con.print(0, 0, "Selected: %d Blue Right", currAuton);
+					break;
+				case(5):
+					con.print(0, 0, "Selected: %d None", currAuton);
+					break;
+			}
+			// con.print(0, 0, "Selected: %d", currAuton);
+		}
+		localTime ++;
+	}
+}
 	
 /**
  * Runs the user autonomous code. This function will be started in its own task
@@ -54,7 +103,22 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	redHalfAwpLeft();
+	blueHalfAwpLeft();
+	// if(currAuton == 1) {
+	// 	redHalfAwpLeft();
+	// }
+	// if(currAuton == 2) {
+	// 	redHalfAwpRight();
+	// }
+	// if(currAuton == 3) {
+	// 	blueHalfAwpLeft();
+	// }
+	// if(currAuton == 4) {
+	// 	blueHalfAwpRight();
+	// }
+	// if(currAuton == 5) {
+		
+	// }
 }
 
 /**
@@ -71,10 +135,10 @@ void autonomous() {
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	imu.reset();
-	while(imu.is_calibrating()) {
-		delay(5);
-	}
+	// imu.reset();
+	// while(imu.is_calibrating()) {
+	// 	delay(5);
+	// }
 	con.clear();
 	delay(50);
 	con.print(0, 0, "jeff don't int");
@@ -98,9 +162,10 @@ void opcontrol() {
 	// con.print(2, 0, "go over the speed limit-elkins");
 	// delay(50);
 	int flySpeed = 97;
-	int count;
+	int count = 0;
 	int setFSpeed = 0;
 	int flywheelSpeeds = 2;
+	int count2 = 0;
 	while(true) {
 		int power = con.get_analog(ANALOG_LEFT_Y); // left joystick y axis is powe
 		int valForTurn = con.get_analog(ANALOG_RIGHT_X); // right joystick x axis controls turn
@@ -123,7 +188,10 @@ void opcontrol() {
 			con.print(0, 0, "%f", turn);
 			delay(50);
 			con.print(1, 0, "%d", flySpeed);
+			
 		}
+
+		
 
 		//Roller Control
 		if(!autoRoll) { // if the autoroller is not on
@@ -188,11 +256,17 @@ void opcontrol() {
 		if(toggleFlyWheel) {
 			F1.move(flySpeed);
 			F2.move(flySpeed);
+			count2 ++;
+			if(count2 % 10000) {
+				con.rumble(".");
+			}
 		} 
 		else {
 			F1.move(0);
 			F2.move(0);
 		}
+
+		
 		
 		bool toggleIDX = false;
 		bool checkToggleIDX = false;
@@ -239,7 +313,7 @@ void opcontrol() {
 
 		 
 		if(con.get_digital(E_CONTROLLER_DIGITAL_LEFT)) {
-			pidmove(-100);
+			con.rumble(". - .");
 		}
 
 		

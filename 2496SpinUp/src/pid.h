@@ -43,10 +43,10 @@ int moveCount = 0;
 
 void spinToBlue() {
     double hue = optical.get_hue(); 
-    optical.set_led_pwm(25);
-    while(hue < 80 || hue > 200) {
+    optical.set_led_pwm(75);
+    while(hue < 80 || hue > 220) {
         hue = optical.get_hue();
-        INTAKE.move(67);
+        INTAKE.move(50);
         delay(5);
     }
     INTAKE.move(0);
@@ -278,6 +278,28 @@ void redHalfAwpRight() {
     spinToRed();
 }
 
+void blueHalfAwpRight() {
+
+    spinFlywheel(113);
+    pidturn(27);
+    delay(4500);
+    spinIndexer(-1, 60);
+    spinFlywheel(111);
+
+    delay(2000);
+    spinIndexer(-1, 60);
+    delay(800);
+    pidturn(-94);
+    pidmove(1275);
+    pidturn(0);
+    chas_move(30, 30);
+    moveIntake(-70);
+
+    delay(1500);
+    // chas_move(0, 0);
+    spinToBlue();
+}
+
 void redHalfAwpLeft() {
     // spin flywheel
     
@@ -341,17 +363,17 @@ void redHalfAwpLeft() {
 void blueHalfAwpLeft() {
     // spin flywheel
     
-    spinFlywheel(113);
+    spinFlywheel(114);
     delay(2000);
     // fire twice
     
     spinIndexer(-1, 60);
-    spinFlywheel(117);
+    spinFlywheel(121);
     delay(1200);
     spinIndexer(-1, 60);
     delay(500);
     // drive back (possibly turn) and toggle roller
-    pidturn(-6);
+    // pidturn(-6);
 
     chas_move(30, 30);
 
@@ -379,7 +401,7 @@ void blueHalfAwpLeft() {
     // move chassis forward to intake disc stack
     chas_move(45, 45);
     delay(1750);
-    spinFlywheel(98);
+    spinFlywheel(93);
     chas_move(0, 0);
 
     pidturn(-33);
@@ -389,11 +411,11 @@ void blueHalfAwpLeft() {
     delay(500);
 
     spinIndexer(-1, 60);
-    spinFlywheel(101);
+    spinFlywheel(98);
     delay(800);
     
     spinIndexer(-1, 60);
-    spinFlywheel(109);
+    spinFlywheel(103);
     delay(900);
     spinIndexer(-1, 60);
 }
