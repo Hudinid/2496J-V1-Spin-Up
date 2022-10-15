@@ -46,7 +46,7 @@ void spinToBlue() {
     optical.set_led_pwm(25);
     while(hue < 80 || hue > 220) {
         hue = optical.get_hue();
-        INTAKE.move(50);
+        INTAKE.move(55);
         delay(5);
     }
     INTAKE.move(0);
@@ -59,7 +59,7 @@ void spinToRed() {
 
     while(hue > 70) {
         hue = optical.get_hue();
-        INTAKE.move(50);
+        INTAKE.move(55);
         delay(5);
     }
 
@@ -257,46 +257,78 @@ void fullAwp() {
 }
 
 void redHalfAwpRight() {
-
-    spinFlywheel(112);
-    pidturn(27);
-    delay(4500);
+spinFlywheel(100);
+    moveIntake(127);
+    chas_move(75, 75);
+    delay(500);
+    chas_move(0, 0);
+    delay(250);
+    pidturn(215);
+    delay(1500);
     spinIndexer(-1, 60);
-    spinFlywheel(111);
+    spinFlywheel(108);
 
-    delay(2000);
+    delay(750);
     spinIndexer(-1, 60);
+    spinFlywheel(116);
     delay(800);
-    pidturn(-94);
-    pidmove(1275);
-    pidturn(0);
-    chas_move(30, 30);
+    spinIndexer(-1, 60);
+    delay(500);
+    
+    spinFlywheel(0);
+    pidturn(180);
+    chas_move(70, 70);
+    delay(500);
+    chas_move(0, 0);
+    delay(500);
+    pidturn(94);
+    
+    pidmove(1725);
+    pidturn(178);
+    chas_move(35, 35);
     moveIntake(-70);
 
-    delay(1500);
+    delay(1000);
+    chas_move(5, 5);
     // chas_move(0, 0);
     spinToRed();
 
 }
 
 void blueHalfAwpRight() {
-
-    spinFlywheel(112);
-    pidturn(27);
-    delay(4500);
+    spinFlywheel(100);
+    moveIntake(127);
+    chas_move(75, 75);
+    delay(500);
+    chas_move(0, 0);
+    delay(250);
+    pidturn(215);
+    delay(1500);
     spinIndexer(-1, 60);
-    spinFlywheel(111);
+    spinFlywheel(108);
 
-    delay(2000);
+    delay(750);
     spinIndexer(-1, 60);
+    spinFlywheel(116);
     delay(800);
-    pidturn(-94);
-    pidmove(1275);
-    pidturn(0);
-    chas_move(30, 30);
+    spinIndexer(-1, 60);
+    delay(500);
+    
+    spinFlywheel(0);
+    pidturn(180);
+    chas_move(70, 70);
+    delay(500);
+    chas_move(0, 0);
+    delay(500);
+    pidturn(94);
+    
+    pidmove(1725);
+    pidturn(178);
+    chas_move(35, 35);
     moveIntake(-70);
 
-    delay(1500);
+    delay(1000);
+    chas_move(5, 5);
     // chas_move(0, 0);
     spinToBlue();
 }
@@ -304,13 +336,13 @@ void blueHalfAwpRight() {
 void redHalfAwpLeft() {
     // spin flywheel
     
-    spinFlywheel(113);
-    delay(2000);
+    spinFlywheel(116);
+    delay(2100);
     // fire twice
     
     spinIndexer(-1, 60);
-    spinFlywheel(120);
-    delay(1225);
+    spinFlywheel(123);
+    delay(1200);
     spinIndexer(-1, 60);
     delay(500);
     // drive back (possibly turn) and toggle roller
@@ -342,7 +374,7 @@ void redHalfAwpLeft() {
     // move chassis forward to intake disc stack
     chas_move(45, 45);
     delay(1750);
-    spinFlywheel(94);
+    spinFlywheel(93);
     chas_move(0, 0);
 
     pidturn(-33);
@@ -364,13 +396,13 @@ void redHalfAwpLeft() {
 void blueHalfAwpLeft() {
     // spin flywheel
     
-    spinFlywheel(113);
-    delay(2000);
+    spinFlywheel(116);
+    delay(2100);
     // fire twice
     
     spinIndexer(-1, 60);
-    spinFlywheel(120);
-    delay(1225);
+    spinFlywheel(123);
+    delay(1200);
     spinIndexer(-1, 60);
     delay(500);
     // drive back (possibly turn) and toggle roller
@@ -402,7 +434,7 @@ void blueHalfAwpLeft() {
     // move chassis forward to intake disc stack
     chas_move(45, 45);
     delay(1750);
-    spinFlywheel(94);
+    spinFlywheel(93);
     chas_move(0, 0);
 
     pidturn(-33);

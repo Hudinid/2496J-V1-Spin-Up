@@ -54,17 +54,17 @@ void competition_initialize() {
 
 	while(true) {
 
-		// if(button.get_value() == 0 || button2.get_value() == 0) {
-		// 	if(selected) {
-		// 		currAuton ++;
-		// 		if(currAuton == totalAutons+1) {
-		// 			currAuton = 1;
-		// 		}
-		// 		selected = false;
-		// 	}
-		// 	selected = false;
-		// }
-		// else selected = true;
+		if(button.get_value() == 0) {
+			if(selected) {
+				currAuton ++;
+				if(currAuton == totalAutons+1) {
+					currAuton = 1;
+				}
+				selected = false;
+			}
+			selected = false;
+		}
+		else selected = true;
 
 		if(localTime%50 == 0) {
 			// con.clear();
@@ -103,22 +103,22 @@ void competition_initialize() {
  * from where it left off.
  */
 void autonomous() {
-	blueHalfAwpRight();
-	// if(currAuton == 1) {
-	// 	redHalfAwpLeft();
-	// }
-	// if(currAuton == 2) {
-	// 	redHalfAwpRight();
-	// }
-	// if(currAuton == 3) {
-	// 	blueHalfAwpLeft();
-	// }
-	// if(currAuton == 4) {
-	// 	blueHalfAwpRight();
-	// }
-	// if(currAuton == 5) {
+	// blueHalfAwpRight();
+	if(currAuton == 1) {
+		redHalfAwpLeft();
+	}
+	if(currAuton == 2) {
+		redHalfAwpRight();
+	}
+	if(currAuton == 3) {
+		blueHalfAwpLeft();
+	}
+	if(currAuton == 4) {
+		blueHalfAwpRight();
+	}
+	if(currAuton == 5) {
 		
-	// }
+	}
 }
 
 /**
