@@ -257,7 +257,7 @@ void fullAwp() {
 }
 
 void redHalfAwpRight() {
-spinFlywheel(100);
+    spinFlywheel(100);
     moveIntake(127);
     chas_move(75, 75);
     delay(500);
@@ -336,12 +336,12 @@ void blueHalfAwpRight() {
 void redHalfAwpLeft() {
     // spin flywheel
     
-    spinFlywheel(116);
+    spinFlywheel(115);
     delay(2100);
     // fire twice
     
     spinIndexer(-1, 60);
-    spinFlywheel(123);
+    spinFlywheel(122);
     delay(1200);
     spinIndexer(-1, 60);
     delay(500);
@@ -396,12 +396,12 @@ void redHalfAwpLeft() {
 void blueHalfAwpLeft() {
     // spin flywheel
     
-    spinFlywheel(116);
+    spinFlywheel(115);
     delay(2100);
     // fire twice
     
     spinIndexer(-1, 60);
-    spinFlywheel(123);
+    spinFlywheel(122);
     delay(1200);
     spinIndexer(-1, 60);
     delay(500);
