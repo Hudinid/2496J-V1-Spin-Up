@@ -263,7 +263,7 @@ void redHalfAwpRight() {
     delay(500);
     chas_move(0, 0);
     delay(250);
-    pidturn(215);
+    pidturn(217);
     delay(1500);
     spinIndexer(-1, 60);
     spinFlywheel(108);
@@ -283,7 +283,7 @@ void redHalfAwpRight() {
     delay(500);
     pidturn(94);
     
-    pidmove(1725);
+    pidmove(1625);
     pidturn(178);
     chas_move(35, 35);
     moveIntake(-70);
@@ -302,7 +302,7 @@ void blueHalfAwpRight() {
     delay(500);
     chas_move(0, 0);
     delay(250);
-    pidturn(215);
+    pidturn(217);
     delay(1500);
     spinIndexer(-1, 60);
     spinFlywheel(108);
@@ -322,7 +322,7 @@ void blueHalfAwpRight() {
     delay(500);
     pidturn(94);
     
-    pidmove(1725);
+    pidmove(1625);
     pidturn(178);
     chas_move(35, 35);
     moveIntake(-70);
