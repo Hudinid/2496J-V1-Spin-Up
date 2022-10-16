@@ -336,12 +336,12 @@ void blueHalfAwpRight() {
 void redHalfAwpLeft() {
     // spin flywheel
     
-    spinFlywheel(115);
+    spinFlywheel(116);
     delay(2100);
     // fire twice
     
     spinIndexer(-1, 60);
-    spinFlywheel(122);
+    spinFlywheel(120);
     delay(1200);
     spinIndexer(-1, 60);
     delay(500);
@@ -396,12 +396,12 @@ void redHalfAwpLeft() {
 void blueHalfAwpLeft() {
     // spin flywheel
     
-    spinFlywheel(115);
+    spinFlywheel(116);
     delay(2100);
     // fire twice
     
     spinIndexer(-1, 60);
-    spinFlywheel(122);
+    spinFlywheel(120);
     delay(1200);
     spinIndexer(-1, 60);
     delay(500);
