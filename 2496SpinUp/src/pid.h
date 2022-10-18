@@ -455,53 +455,67 @@ void blueHalfAwpLeft() {
 }
 
 void redSoloAwp() {
-    // spin roller
+    //setup straight (roller perpendicular to robot, as far forward without touching disc)
+    //charge flywheel
     spinFlywheel(114.5);
     chas_move(30, 30);
-    
     moveIntake(-50);
     delay(1000);
     moveIntake(0);
+
+    //spin roller
     spinToRed();
 
-    // drive and fire
+    // align with goal
     chas_move(30, 30);
     delay(1000);
     chas_move(0, 0);
     pidturn(2);
     delay(150);
+
+    //fire discs
     spinIndexer(-1, 60);
     delay(1000);
     spinIndexer(-1.5, 60);
 
     //drive and pick up 3 disc stack
+
+    //turn
     pidmove(-5);
     pidturn(-130);
     moveIntake(127);
     pidmove(1500);
+
+    //collect discs
     chas_move(45, 45);
     delay(1700);
     chas_move(0, 0);
 
+    //turn towards goal
     pidturn(-32);
     spinFlywheel(95);
     delay(500);
+
+    //fire three discs
     spinIndexer(-1, 60);
     delay(1000);
-    spinFlywheel(100);
+
+    //prevent rpm drop on flywheel by increasing rpm
+    spinFlywheel(100); 
     spinIndexer(-1, 60);
     delay(1000);
     spinFlywheel(105);
     spinIndexer(-1, 60);
     delay(1000);
-    // turn and fire
 
+    //turn towards discs
     pidturn(-60);
     delay(1000);
     pidmove(1500);
     delay(1000);
 }
 
+//old code (brian's from start of practice)
 void RHredSoloAwp() {
     // spin roller
     spinFlywheel(112);
