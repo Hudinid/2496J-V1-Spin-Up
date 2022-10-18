@@ -1,5 +1,6 @@
 #include "main.h"
 #include "global.h"
+#include <chrono>
 #include <cmath>
 #include <iostream>
 
@@ -453,5 +454,149 @@ void blueHalfAwpLeft() {
     spinIndexer(-1, 60);
 }
 
+void redSoloAwp() {
+    // spin roller
+    spinFlywheel(114.5);
+    chas_move(30, 30);
+    
+    moveIntake(-50);
+    delay(1000);
+    moveIntake(0);
+    spinToRed();
+
+    // drive and fire
+    chas_move(30, 30);
+    delay(1000);
+    chas_move(0, 0);
+    pidturn(2);
+    delay(150);
+    spinIndexer(-1, 60);
+    delay(1000);
+    spinIndexer(-1.5, 60);
+
+    //drive and pick up 3 disc stack
+    pidmove(-5);
+    pidturn(-130);
+    moveIntake(127);
+    pidmove(1500);
+    chas_move(45, 45);
+    delay(1700);
+    chas_move(0, 0);
+
+    pidturn(-32);
+    spinFlywheel(95);
+    delay(500);
+    spinIndexer(-1, 60);
+    delay(1000);
+    spinFlywheel(100);
+    spinIndexer(-1, 60);
+    delay(1000);
+    spinFlywheel(105);
+    spinIndexer(-1, 60);
+    delay(1000);
+    // turn and fire
+
+    pidturn(-60);
+    delay(1000);
+    pidmove(1500);
+    delay(1000);
+}
+
+void RHredSoloAwp() {
+    // spin roller
+    spinFlywheel(112);
+    chas_move(30, 30);
+    moveIntake(-50);
+    delay(1000);
+    moveIntake(0);
+    spinToRed();
+
+    // drive and fire
+    /*chas_move(30, 30);
+    delay(1000);
+    chas_move(0, 0);*/
+    delay(250);
+    spinIndexer(-1, 60);
+    spinFlywheel(120);
+    delay(500);
+    spinIndexer(-1, 60);
+    delay(250);
+
+    //drive and pick up 3 disc stack
+    pidmove(-5);
+    pidturn(-135);
+    moveIntake(127);
+    pidmove(1500);
+    chas_move(65, 65);
+    delay(1000);
+    chas_move(0, 0);
+
+    // turn and fire
+}
+
+void skills() {
+    // spin flywheel
+    
+    spinFlywheel(116);
+    delay(2100);
+    // fire twice
+    
+    spinIndexer(-1, 60);
+    spinFlywheel(120);
+    delay(1200);
+    spinIndexer(-1, 60);
+    delay(500);
+    // drive back (possibly turn) and toggle roller
+    // pidturn(-6);
+
+    chas_move(30, 30);
+
+    moveIntake(-50);
+    delay(1000);
+    moveIntake(0);
+    spinToRed();
+    delay(150);
+
+    chas_move(0, 0);
+
+    pidmove(5);
+    
+    // turn and face towards discs at mid
+    
+    pidturn(-135);
+    delay(5);
+
+    // drive and intake
+
+    moveIntake(127);
+    pidmove(1500);
+
+
+    // move chassis forward to intake disc stack
+    chas_move(45, 45);
+    delay(1750);
+    spinFlywheel(93);
+    chas_move(0, 0);
+
+    pidturn(-33);
+    // face goal
+    // pray (fire discs at high goal)s
+    
+    delay(500);
+
+    spinIndexer(-1, 60);
+    spinFlywheel(98);
+    delay(800);
+    
+    spinIndexer(-1, 60);
+    spinFlywheel(103);
+    delay(900);
+    spinIndexer(-1, 60);
+    // skills portion
+    pidturn(45);
+    pidmove(3000);
+    pidturn(30);
+    expansion.set_value(true);
+}
 
 #endif

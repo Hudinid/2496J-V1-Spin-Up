@@ -82,7 +82,7 @@ void competition_initialize() {
 					con.print(0, 0, "Selected: %d Blue Right", currAuton);
 					break;
 				case(5):
-					con.print(0, 0, "Selected: %d None", currAuton);
+					con.print(0, 0, "Selected: %d ", currAuton);
 					break;
 			}
 			// con.print(0, 0, "Selected: %d", currAuton);
@@ -103,7 +103,11 @@ void competition_initialize() {
  * from where it left off.
  */
 void autonomous() {
-	// blueHalfAwpRight();
+	currAuton = 100;
+
+	redSoloAwp();
+	
+	/*
 	if(currAuton == 1) {
 		redHalfAwpLeft();
 	}
@@ -117,8 +121,11 @@ void autonomous() {
 		blueHalfAwpRight();
 	}
 	if(currAuton == 5) {
-		
+		RHredSoloAwp();
 	}
+	if(currAuton ==6) {
+		redSoloAwp();
+	}*/
 }
 
 /**
