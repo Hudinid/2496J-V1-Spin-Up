@@ -490,6 +490,7 @@ void redSoloAwp() {
     chas_move(45, 45);
     delay(1700);
     chas_move(0, 0);
+    moveIntake(0);
 
     //turn towards goal
     pidturn(-32);
@@ -508,11 +509,26 @@ void redSoloAwp() {
     spinIndexer(-1, 60);
     delay(1000);
 
-    //turn towards discs
+    //turn towards discs -- theoretical
     pidturn(-60);
+    moveIntake(127);
     delay(1000);
     pidmove(1500);
     delay(1000);
+    pidturn(-85);
+
+    //roller
+    moveIntake(-50);
+    delay(1000);
+    moveIntake(0);
+
+    //spin roller
+    spinToRed();
+
+    // align with goal
+    chas_move(30, 30);
+    delay(1000);
+
 }
 
 //old code (brian's from start of practice)
