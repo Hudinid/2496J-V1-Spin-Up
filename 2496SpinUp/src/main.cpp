@@ -107,7 +107,7 @@ void autonomous() {
 
 	redSoloAwp();
 	
-	/*
+	
 	if(currAuton == 1) {
 		redHalfAwpLeft();
 	}
@@ -121,11 +121,8 @@ void autonomous() {
 		blueHalfAwpRight();
 	}
 	if(currAuton == 5) {
-		RHredSoloAwp();
+	
 	}
-	if(currAuton ==6) {
-		redSoloAwp();
-	}*/
 }
 
 /**

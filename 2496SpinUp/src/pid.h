@@ -470,8 +470,7 @@ void redSoloAwp() {
     chas_move(-15, -15);
     delay(100);
     chas_move(0, 0);
-    pidturn(0.5);
-    delay(150);
+    delay(1000);
 
     //fire discs
     spinIndexer(-1, 60);
@@ -483,13 +482,13 @@ void redSoloAwp() {
 
     //turn
     pidmove(-5);
-    pidturn(-128);
+    pidturn(-129);
     moveIntake(127);
-    pidmove(1400);
+    pidmove(1350);
 
     //collect discs
     chas_move(45, 45);
-    delay(1800);
+    delay(1750);
     spinFlywheel(105);
     chas_move(0, 0);
     
@@ -510,7 +509,7 @@ void redSoloAwp() {
     delay(500);
     
     spinIndexer(-1, 60);
-    delay(400);
+    delay(500);
 
     //turn towards discs -- theoretical
     pidturn(-147);
