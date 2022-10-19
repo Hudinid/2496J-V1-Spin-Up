@@ -457,65 +457,76 @@ void blueHalfAwpLeft() {
 void redSoloAwp() {
     //setup straight (roller perpendicular to robot, as far forward without touching disc)
     //charge flywheel
-    spinFlywheel(114.5);
+    spinFlywheel(123);
     chas_move(30, 30);
     moveIntake(-50);
-    delay(1000);
+    delay(500);
     moveIntake(0);
 
     //spin roller
     spinToRed();
 
     // align with goal
-    chas_move(30, 30);
-    delay(1000);
+    chas_move(-15, -15);
+    delay(100);
     chas_move(0, 0);
-    pidturn(2);
+    pidturn(0.5);
     delay(150);
 
     //fire discs
     spinIndexer(-1, 60);
-    delay(1000);
-    spinIndexer(-1.5, 60);
+    delay(600);
+    spinIndexer(-2, 100);
+    delay(400);
 
     //drive and pick up 3 disc stack
 
     //turn
     pidmove(-5);
-    pidturn(-130);
+    pidturn(-128);
     moveIntake(127);
-    pidmove(1500);
+    pidmove(1400);
 
     //collect discs
     chas_move(45, 45);
-    delay(1700);
+    delay(1800);
+    spinFlywheel(105);
     chas_move(0, 0);
-    moveIntake(0);
+    
 
     //turn towards goal
-    pidturn(-32);
-    spinFlywheel(95);
-    delay(500);
+    pidturn(-31);
+    
+    delay(100);
 
     //fire three discs
     spinIndexer(-1, 60);
-    delay(1000);
-
+    spinFlywheel(108); 
+    delay(500);
     //prevent rpm drop on flywheel by increasing rpm
-    spinFlywheel(100); 
+    
     spinIndexer(-1, 60);
-    delay(1000);
-    spinFlywheel(105);
+    spinFlywheel(110);
+    delay(500);
+    
     spinIndexer(-1, 60);
-    delay(1000);
+    delay(400);
 
     //turn towards discs -- theoretical
-    pidturn(-60);
+    pidturn(-147);
     moveIntake(127);
-    delay(1000);
-    pidmove(1500);
-    delay(1000);
-    pidturn(-85);
+    pidmove(4150);
+    delay(100);
+
+    chas_move(100,0);
+    delay(1100);
+    chas_move(0,0);
+    moveIntake(0);
+
+    //spin roller
+    spinToRed();
+    
+    /*pidturn(-85);
 
     //roller
     moveIntake(-50);
@@ -527,7 +538,7 @@ void redSoloAwp() {
 
     // align with goal
     chas_move(30, 30);
-    delay(1000);
+    delay(1000);*/
 
 }
 
