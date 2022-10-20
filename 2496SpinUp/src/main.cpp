@@ -105,7 +105,7 @@ void competition_initialize() {
 void autonomous() {
 	currAuton = 100;
 
-	redSoloAwp();
+	BHredSoloAwp();
 	
 	
 	if(currAuton == 1) {
