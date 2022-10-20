@@ -457,46 +457,48 @@ void blueHalfAwpLeft() {
 void redSoloAwp() {
     //setup straight (roller perpendicular to robot, as far forward without touching disc)
     //charge flywheel
-    spinFlywheel(123);
+    spinFlywheel(124);
     chas_move(30, 30);
     moveIntake(-50);
-    delay(500);
+    delay(400);
     moveIntake(0);
+    delay(100);
 
     //spin roller
     spinToRed();
-
-    // align with goal
-    chas_move(-15, -15);
-    delay(100);
+    chas_move(-60, -60);
+    pidturn(2);
+    delay(125);
     chas_move(0, 0);
-    delay(1000);
+    delay(500);
 
+    
+    
     //fire discs
     spinIndexer(-1, 60);
+    delay(450);
+    
+    spinIndexer(-2, 60);
     delay(600);
-    spinIndexer(-2, 100);
-    delay(400);
 
     //drive and pick up 3 disc stack
 
     //turn
-    pidmove(-5);
-    pidturn(-129);
+    // pidmove(-5);
+    pidturn(-128);
+    spinFlywheel(105);
     moveIntake(127);
-    pidmove(1350);
+    pidmove(1290);
 
     //collect discs
-    chas_move(45, 45);
-    delay(1750);
-    spinFlywheel(105);
+    chas_move(55, 55); // speed up later
+    delay(1535);
+    
     chas_move(0, 0);
     
 
     //turn towards goal
-    pidturn(-31);
-    
-    delay(100);
+    pidturn(-33);
 
     //fire three discs
     spinIndexer(-1, 60);
@@ -505,26 +507,32 @@ void redSoloAwp() {
     //prevent rpm drop on flywheel by increasing rpm
     
     spinIndexer(-1, 60);
-    spinFlywheel(110);
-    delay(500);
+    spinFlywheel(112);
+    delay(600);
     
-    spinIndexer(-1, 60);
-    delay(500);
+    spinIndexer(-2.2, 60);
+    delay(600);
 
     //turn towards discs -- theoretical
-    pidturn(-147);
+    pidturn(-139);
     moveIntake(127);
-    pidmove(4150);
-    delay(100);
+    pidmove(4023);
 
     chas_move(100,0);
-    delay(1100);
-    chas_move(0,0);
+    
+    delay(1000);
     moveIntake(0);
-
+    delay(10);
+    chas_move(30,30);
+    delay(50);
+    chas_move(0,0);
+    moveIntake(-50);
+    delay(400);
+    moveIntake(0);
+    delay(100);
     //spin roller
     spinToRed();
-    
+
     /*pidturn(-85);
 
     //roller
