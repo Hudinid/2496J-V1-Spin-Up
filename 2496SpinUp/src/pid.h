@@ -622,7 +622,7 @@ void BHredSoloAwp() {
     spinIndexer(-1, 60);
     moveIntake(127);
     pidmove(4120);
-    moveIntake(0);
+    moveIntake(-55);
     
     chas_move(100,0);
     moveIntake(-55);
@@ -630,7 +630,7 @@ void BHredSoloAwp() {
     chas_move(30,30);
     delay(507);
     spinToRed();
-    chas_move(0,0);
+    
    
 
 }
