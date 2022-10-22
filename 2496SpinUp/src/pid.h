@@ -548,12 +548,15 @@ void redSoloAwp() {
     delay(1000);*/
 
 }
-
+void spitDisc(){
+    spinFlywheel(50);
+    spinIndexer(-1,60);
+}
 //old code (brian's from start of practice)
 void BHredSoloAwp() {
     //setup straight (roller perpendicular to robot, as far forward without touching disc)
     //charge flywheel
-    spinFlywheel(120);
+    spinFlywheel(107);
     chas_move(30, 30);
     moveIntake(-50);
     delay(400);
@@ -563,33 +566,35 @@ void BHredSoloAwp() {
     //spin roller
     spinToRed();
     chas_move(-70, -70);
+    delay(100);
     pidturn(3);
-    delay(500);
-    chas_move(0, 0);
-    delay(500);
+    delay(300);
+    // chas_move(0, 0);
+    // delay(500);
 
     
     
     //fire discs
     spinIndexer(-1, 60);
-    spinFlywheel(121);
+    spinFlywheel(112);
 
-    delay(450);
+    delay(800);
     
-    spinIndexer(-2, 80);
+    spinIndexer(-2, 60);
     delay(600);
 
     //drive and pick up 3 disc stack
 
     //turn
-    spinFlywheel(101);
+    spinFlywheel(97);
 
     // pidmove(-5);
     pidturn(-128);
     moveIntake(127);
-    pidmove(1325);
+    pidmove(1375);
 
     //collect discs
+    moveIntake(90);
     chas_move(80, 80); // speed up later
     delay(1000);
     
@@ -601,30 +606,31 @@ void BHredSoloAwp() {
 
     //fire three discs
     spinIndexer(-1, 60);
-    spinFlywheel(106); 
+    spinFlywheel(103); 
     delay(500);
     //prevent rpm drop on flywheel by increasing rpm
     
     spinIndexer(-1, 60);
-    spinFlywheel(112);
+    spinFlywheel(108);
     delay(600);
     
     spinIndexer(-2, 60);
-    delay(600);
+    delay(400);
 
     //turn towards discs -- theoretical
-    pidturn(-139);
+    spinFlywheel(60);
+
+    pidturn(-143);
+    spinIndexer(-1, 60);
     moveIntake(127);
-    pidmove(4100);
-    moveIntake(-80);
+    pidmove(4125);
+    moveIntake(-100);
     chas_move(100,0);
-    
-    delay(500);
     moveIntake(0);
-    delay(10);
+    delay(400);
     chas_move(30,30);
     moveIntake(-50);
-    delay(200);
+    delay(500);
     chas_move(0,0);
     // delay(00);
      //spin roller
