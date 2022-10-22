@@ -556,7 +556,7 @@ void spitDisc(){
 void BHredSoloAwp() {
     //setup straight (roller perpendicular to robot, as far forward without touching disc)
     //charge flywheel
-    spinFlywheel(107);
+    spinFlywheel(107.5);
     chas_move(30, 30);
     moveIntake(-50);
     delay(400);
@@ -569,18 +569,15 @@ void BHredSoloAwp() {
     delay(100);
     pidturn(3);
     delay(300);
-    // chas_move(0, 0);
-    // delay(500);
-
-    
-    
+        
     //fire discs
     spinIndexer(-1, 60);
-    spinFlywheel(112);
+    spinFlywheel(112.5);
 
     delay(800);
     
     spinIndexer(-2, 60);
+    moveIntake(-48);
     delay(600);
 
     //drive and pick up 3 disc stack
@@ -590,11 +587,12 @@ void BHredSoloAwp() {
 
     // pidmove(-5);
     pidturn(-128);
-    moveIntake(127);
+    
     pidmove(1375);
+    moveIntake(127);
+    
 
     //collect discs
-    moveIntake(90);
     chas_move(80, 80); // speed up later
     delay(1000);
     
@@ -620,35 +618,20 @@ void BHredSoloAwp() {
     //turn towards discs -- theoretical
     spinFlywheel(60);
 
-    pidturn(-143);
+    pidturn(-142);
     spinIndexer(-1, 60);
     moveIntake(127);
-    pidmove(4125);
-    moveIntake(-100);
+    pidmove(4120);
+    moveIntake(0);
+    
     chas_move(100,0);
-    moveIntake(0);
-    delay(400);
-    chas_move(30,30);
-    moveIntake(-50);
+    moveIntake(-55);
     delay(500);
+    chas_move(30,30);
+    delay(507);
+    spinToRed();
     chas_move(0,0);
-    // delay(00);
-     //spin roller
-    spinToRed();
-
-    /*pidturn(-85);
-
-    //roller
-    moveIntake(-50);
-    delay(1000);
-    moveIntake(0);
-
-    //spin roller
-    spinToRed();
-
-    // align with goal
-    chas_move(30, 30);
-    delay(1000);*/
+   
 
 }
 
