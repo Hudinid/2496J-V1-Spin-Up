@@ -454,109 +454,8 @@ void blueHalfAwpLeft() {
     spinIndexer(-1, 60);
 }
 
-void redSoloAwp() {
-    //setup straight (roller perpendicular to robot, as far forward without touching disc)
-    //charge flywheel
-    spinFlywheel(125);
-    chas_move(30, 30);
-    moveIntake(-50);
-    delay(400);
-    moveIntake(0);
-    delay(100);
-
-    //spin roller
-    spinToRed();
-    chas_move(-60, -60);
-    pidturn(2);
-    delay(125);
-    chas_move(0, 0);
-    delay(500);
-
-    
-    
-    //fire discs
-    spinIndexer(-1, 60);
-    delay(450);
-    
-    spinIndexer(-2, 60);
-    delay(600);
-
-    //drive and pick up 3 disc stack
-
-    //turn
-    // pidmove(-5);
-    pidturn(-128);
-    spinFlywheel(105);
-    moveIntake(127);
-    pidmove(1290);
-
-    //collect discs
-    chas_move(55, 55); // speed up later
-    delay(1535);
-    
-    chas_move(0, 0);
-    
-
-    //turn towards goal
-    pidturn(-33);
-
-    //fire three discs
-    spinIndexer(-1, 60);
-    spinFlywheel(108); 
-    delay(500);
-    //prevent rpm drop on flywheel by increasing rpm
-    
-    spinIndexer(-1, 60);
-    spinFlywheel(112);
-    delay(600);
-    
-    spinIndexer(-2.2, 60);
-    delay(600);
-
-    //turn towards discs -- theoretical
-    pidturn(-139);
-    moveIntake(127);
-    pidmove(4023);
-
-    chas_move(100,0);
-    
-    delay(1000);
-    moveIntake(0);
-    delay(10);
-    chas_move(30,30);
-    delay(50);
-    chas_move(0,0);
-    moveIntake(-50);
-    delay(400);
-    moveIntake(0);
-    delay(100);
-    //spin roller
-    spinToRed();
-
-    /*pidturn(-85);
-
-    //roller
-    moveIntake(-50);
-    delay(1000);
-    moveIntake(0);
-
-    //spin roller
-    spinToRed();
-
-    // align with goal
-    chas_move(30, 30);
-    delay(1000);*/
-
-}
-void spitDisc(){
-    spinFlywheel(50);
-    spinIndexer(-1,60);
-}
-//old code (brian's from start of practice)
-void BHredSoloAwp() {
-    //setup straight (roller perpendicular to robot, as far forward without touching disc)
-    //charge flywheel
-    spinFlywheel(107.5);
+void leftHalfAwpTest() {
+    spinFlywheel(108);
     chas_move(30, 30);
     moveIntake(-50);
     delay(400);
@@ -572,26 +471,20 @@ void BHredSoloAwp() {
         
     //fire discs
     spinIndexer(-1, 60);
-    spinFlywheel(112.5);
+    
 
-    delay(800);
+    delay(1500);
     
     spinIndexer(-2, 60);
     moveIntake(-48);
-    delay(600);
-
-    //drive and pick up 3 disc stack
-
-    //turn
+    delay(1000);
     spinFlywheel(97);
 
-    // pidmove(-5);
     pidturn(-128);
     
     pidmove(1375);
     moveIntake(127);
     
-
     //collect discs
     chas_move(80, 80); // speed up later
     delay(1000);
@@ -613,6 +506,70 @@ void BHredSoloAwp() {
     delay(600);
     
     spinIndexer(-2, 60);
+    // delay(400);
+
+}
+
+void redSoloAwp() {
+    //setup straight (roller perpendicular to robot, as far forward without touching disc)
+    //charge flywheel
+    spinFlywheel(109);
+    chas_move(30, 30);
+    moveIntake(-50);
+    delay(400);
+    moveIntake(0);
+    delay(100);
+
+    //spin roller
+    spinToRed();
+    chas_move(-70, -70);
+    delay(100);
+    pidturn(3);
+    delay(300);
+        
+    //fire discs
+    spinIndexer(-1, 60);
+    spinFlywheel(113);
+
+    delay(800);
+    
+    spinIndexer(-2, 60);
+    moveIntake(-30);
+    delay(600);
+
+    //drive and pick up 3 disc stack
+
+    //turn
+    spinFlywheel(97);
+
+    // pidmove(-5);
+    pidturn(-128);
+    
+    pidmove(1375);
+    moveIntake(127);
+    
+    
+    //collect discs
+    chas_move(80, 80); // speed up later
+    delay(1000);
+    
+    chas_move(0, 0);
+    
+
+    //turn towards goal
+    pidturn(-29);
+
+    //fire three discs
+    spinIndexer(-1, 60);
+    spinFlywheel(103); 
+    delay(500);
+    //prevent rpm drop on flywheel by increasing rpm
+    
+    spinIndexer(-1, 60);
+    spinFlywheel(108);
+    delay(600);
+    
+    spinIndexer(-2, 60);
     delay(400);
 
     //turn towards discs -- theoretical
@@ -621,14 +578,14 @@ void BHredSoloAwp() {
     pidturn(-142);
     spinIndexer(-1, 60);
     moveIntake(127);
-    pidmove(4120);
-    moveIntake(-55);
+    pidmove(4154);
+    moveIntake(-100);
     
     chas_move(100,0);
-    moveIntake(-55);
+    moveIntake(-100);
     delay(500);
     chas_move(30,30);
-    delay(507);
+    delay(250);
     spinToRed();
     
    
