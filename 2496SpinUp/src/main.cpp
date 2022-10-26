@@ -87,6 +87,9 @@ void competition_initialize() {
 					con.print(0, 0, "Selected: %d Solo AWP", currAuton);
 					break;
 				case(6):
+					con.print(0, 0, "Selected: %d Solo AWP", currAuton);
+					break;
+				case(7):
 					con.print(0, 0, "Selected: %d None", currAuton);
 					
 			}
@@ -110,7 +113,7 @@ void competition_initialize() {
 void autonomous() {
 	currAuton = 100;
 
-	testHalfAwpLeft();
+	testRedHalfAwpLeft();
 	
 	
 	if(currAuton == 1) {
@@ -129,7 +132,10 @@ void autonomous() {
 		redSoloAwp();
 	}
 	if(currAuton == 6) {
-
+		blueSoloAwp();
+	}
+	if(currAuton ==7) {
+		
 	}
 }
 
