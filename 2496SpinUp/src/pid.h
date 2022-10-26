@@ -76,6 +76,11 @@ void spinFlywheel(int speed) {
     F2.move(speed);
 }
 
+void velocitySpinFlywheel(int rpm) {
+    F1.move_velocity(rpm);
+    F2.move_velocity(rpm);
+}
+
 void stopFlyWheel() {
     F1.set_brake_mode(E_MOTOR_BRAKE_COAST);
     F2.set_brake_mode(E_MOTOR_BRAKE_COAST);
@@ -454,66 +459,10 @@ void blueHalfAwpLeft() {
     spinIndexer(-1, 60);
 }
 
-void leftHalfAwpTest() {
-    spinFlywheel(108);
-    chas_move(30, 30);
-    moveIntake(-50);
-    delay(400);
-    moveIntake(0);
-    delay(100);
-
-    //spin roller
-    spinToRed();
-    chas_move(-70, -70);
-    delay(100);
-    pidturn(3);
-    delay(300);
-        
-    //fire discs
-    spinIndexer(-1, 60);
-    
-
-    delay(1500);
-    
-    spinIndexer(-2, 60);
-    moveIntake(-48);
-    delay(1000);
-    spinFlywheel(97);
-
-    pidturn(-128);
-    
-    pidmove(1375);
-    moveIntake(127);
-    
-    //collect discs
-    chas_move(80, 80); // speed up later
-    delay(1000);
-    
-    chas_move(0, 0);
-    
-
-    //turn towards goal
-    pidturn(-31);
-
-    //fire three discs
-    spinIndexer(-1, 60);
-    spinFlywheel(103); 
-    delay(500);
-    //prevent rpm drop on flywheel by increasing rpm
-    
-    spinIndexer(-1, 60);
-    spinFlywheel(108);
-    delay(600);
-    
-    spinIndexer(-2, 60);
-    // delay(400);
-
-}
-
-void redSoloAwp() {
+void testHalfAwpLeft() {
     //setup straight (roller perpendicular to robot, as far forward without touching disc)
     //charge flywheel
-    spinFlywheel(109);
+    velocitySpinFlywheel(540);
     chas_move(30, 30);
     moveIntake(-50);
     delay(400);
@@ -525,55 +474,102 @@ void redSoloAwp() {
     chas_move(-70, -70);
     delay(100);
     pidturn(3);
-    delay(300);
+    delay(1000);
         
     //fire discs
     spinIndexer(-1, 60);
-    spinFlywheel(113);
+    // spinFlywheel(113);
 
-    delay(800);
+    delay(750);
     
-    spinIndexer(-2, 60);
+    spinIndexer(-1, 60);
     moveIntake(-30);
-    delay(600);
+    delay(1000);
+    spinIndexer(-1, 60);
+    delay(500);
 
     //drive and pick up 3 disc stack
+    velocitySpinFlywheel(525);
 
-    //turn
-    spinFlywheel(97);
-
-    // pidmove(-5);
-    pidturn(-128);
-    
-    pidmove(1375);
+    pidturn(-129);
+    pidmove(1370);
     moveIntake(127);
-    
     
     //collect discs
     chas_move(80, 80); // speed up later
     delay(1000);
-    
     chas_move(0, 0);
-    
 
     //turn towards goal
     pidturn(-29);
 
     //fire three discs
     spinIndexer(-1, 60);
-    spinFlywheel(103); 
-    delay(500);
-    //prevent rpm drop on flywheel by increasing rpm
+    delay(1400);
     
     spinIndexer(-1, 60);
-    spinFlywheel(108);
-    delay(600);
+    delay(1000);
     
     spinIndexer(-2, 60);
+    delay(1000);
+
+}
+
+
+void redSoloAwp() {
+    //setup straight (roller perpendicular to robot, as far forward without touching disc)
+    //charge flywheel
+    velocitySpinFlywheel(540);
+    chas_move(30, 30);
+    moveIntake(-50);
     delay(400);
+    moveIntake(0);
+    delay(100);
+
+    //spin roller
+    spinToRed();
+    chas_move(-70, -70);
+    delay(100);
+    pidturn(3);
+    delay(300);
+        
+    //fire discs
+    spinIndexer(-1, 60);
+    // spinFlywheel(113);
+
+    delay(850);
+    
+    spinIndexer(-2, 60);
+    moveIntake(-30);
+    delay(600);
+
+    //drive and pick up 3 disc stack
+    velocitySpinFlywheel(490);
+
+    pidturn(-129);
+    pidmove(1360);
+    moveIntake(127);
+    
+    //collect discs
+    chas_move(80, 80); // speed up later
+    delay(1000);
+    chas_move(0, 0);
+
+    //turn towards goal
+    pidturn(-30);
+
+    //fire three discs
+    spinIndexer(-1, 60);
+    delay(500);
+    
+    spinIndexer(-1, 60);
+    delay(550);
+    
+    spinIndexer(-2, 60);
+    delay(600);
 
     //turn towards discs -- theoretical
-    spinFlywheel(60);
+    // spinFlywheel(60);
 
     pidturn(-142);
     spinIndexer(-1, 60);
@@ -585,12 +581,10 @@ void redSoloAwp() {
     moveIntake(-100);
     delay(500);
     chas_move(30,30);
-    delay(250);
+    delay(150);
     spinToRed();
-    
-   
-
 }
+
 
 void skills() {
     // spin flywheel

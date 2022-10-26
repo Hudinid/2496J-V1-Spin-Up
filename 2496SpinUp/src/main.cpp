@@ -51,7 +51,7 @@ void competition_initialize() {
 
 	bool selected = true;
 	int localTime = 0;
-	int totalAutons = 5;
+	int totalAutons = 6;
 	con.clear();
 
 	while(true) {
@@ -84,8 +84,11 @@ void competition_initialize() {
 					con.print(0, 0, "Selected: %d Blue Right", currAuton);
 					break;
 				case(5):
-					con.print(0, 0, "Selected: %d ", currAuton);
+					con.print(0, 0, "Selected: %d Solo AWP", currAuton);
 					break;
+				case(6):
+					con.print(0, 0, "Selected: %d None", currAuton);
+					
 			}
 			// con.print(0, 0, "Selected: %d", currAuton);
 		}
@@ -107,7 +110,7 @@ void competition_initialize() {
 void autonomous() {
 	currAuton = 100;
 
-	redSoloAwp();
+	testHalfAwpLeft();
 	
 	
 	if(currAuton == 1) {
@@ -123,7 +126,10 @@ void autonomous() {
 		blueHalfAwpRight();
 	}
 	if(currAuton == 5) {
-	
+		redSoloAwp();
+	}
+	if(currAuton == 6) {
+
 	}
 }
 
@@ -167,7 +173,7 @@ void opcontrol() {
 	// delay(50);
 	// con.print(2, 0, "go over the speed limit-elkins");
 	// delay(50);
-	int flySpeed = 93;
+	int flySpeed = 440;
 	int count = 0;
 	int setFSpeed = 0;
 	int flywheelSpeeds = 2;
@@ -240,8 +246,8 @@ void opcontrol() {
 		else if(con.get_digital(E_CONTROLLER_DIGITAL_UP)) {
 			if(!hitFlyWheelToggle) {
 				hitFlyWheelToggle = true;
-				flySpeed += 1;
-				if(flySpeed > 127) {
+				flySpeed += 10;
+				if(flySpeed > 600) {
 					flySpeed = 0;
 				}
 			}
@@ -250,9 +256,9 @@ void opcontrol() {
 		else if(con.get_digital(E_CONTROLLER_DIGITAL_DOWN)) { 
 			if(!hitFlyWheelToggle) {
 				hitFlyWheelToggle = true;
-				flySpeed -= 1;
+				flySpeed -= 10;
 				if(flySpeed < 0) { 
-				    flySpeed = 127;
+				    flySpeed = 600;
 				}
 			}
 		}
@@ -260,8 +266,8 @@ void opcontrol() {
 		else hitFlyWheelToggle = false;
 
 		if(toggleFlyWheel) {
-			F1.move(flySpeed);
-			F2.move(flySpeed);
+			F1.move_velocity(flySpeed);
+			F2.move_velocity(flySpeed);
 			count2 ++;
 			if(count2 % 10000) {
 				con.rumble(".");
@@ -306,10 +312,10 @@ void opcontrol() {
 				setFSpeed ++;
 				if(setFSpeed >= flywheelSpeeds) { 
 					setFSpeed = 0;
-					flySpeed = 93;
+					flySpeed = 440;
 				}
 				else if (setFSpeed == 1) {
-					flySpeed = 87;
+					flySpeed = 411;
 				}
 				
 			}
