@@ -113,7 +113,7 @@ void competition_initialize() {
 void autonomous() {
 	currAuton = 100;
 
-	testblueHalfAwpRight();
+	testRedHalfAwpRight();
 	
 	
 	if(currAuton == 1) {

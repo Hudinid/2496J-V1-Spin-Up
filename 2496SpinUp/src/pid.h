@@ -335,43 +335,42 @@ void blueHalfAwpRight() {
     spinToBlue();
 }
 
-void testblueHalfAwpRight() {
+void testRedHalfAwpRight() {
     
-    velocitySpinFlywheel(472);
+    velocitySpinFlywheel(510);
     moveIntake(127);
     chas_move(75, 75);
     delay(500);
     chas_move(0, 0);
-    delay(250);
     pidturn(217);
     delay(1500);
     spinIndexer(-1, 60);
-    velocitySpinFlywheel(510);
+    // velocitySpinFlywheel(510);
 
-    delay(750);
+    delay(1000);
     spinIndexer(-1, 60);
-    velocitySpinFlywheel(548);
-    delay(800);
+    // velocitySpinFlywheel(548);
+    delay(1000);
     spinIndexer(-1, 60);
     delay(500);
     
     pidturn(180);
     chas_move(70, 70);
-    velocitySpinFlywheel(0);
+    // velocitySpinFlywheel(0);
     delay(500);
     chas_move(0, 0);
-    delay(500);
-    pidturn(    94);
     
-    pidmove(1625);
+    pidturn(94);
+    
+    pidmove(1750);
     pidturn(178);
     chas_move(35, 35);
     moveIntake(-70);
 
-    delay(1000);
+    delay(750);
     chas_move(5, 5);
     // chas_move(0, 0);
-    spinToBlue();
+    spinToRed();
 }
 
 void redHalfAwpLeft() {
