@@ -256,11 +256,7 @@ void pidturn (float target){
 // elims awp - fire 2 -> spin roller -> intake and shoot more, could skip the roller as 2 discs = 1 roller
 // and could result in more points
 // half awp - same as elim awp ? fire 2, spin roller, intake and shoot more
- 
 
-void fullAwp() {
-
-}
 
 void redHalfAwpRight() {
     spinFlywheel(100);
@@ -365,7 +361,7 @@ void testblueHalfAwpRight() {
     delay(500);
     chas_move(0, 0);
     delay(500);
-    pidturn(94);
+    pidturn(    94);
     
     pidmove(1625);
     pidturn(178);
@@ -632,7 +628,7 @@ void blueSoloAwp() {
     moveIntake(-50);
     delay(400);
     moveIntake(0);
-    delay(100);
+    delay(100); 
 
     //spin roller
     spinToBlue();

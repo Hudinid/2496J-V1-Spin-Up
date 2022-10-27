@@ -179,7 +179,7 @@ void opcontrol() {
 	// delay(50);
 	// con.print(2, 0, "go over the speed limit-elkins");
 	// delay(50);
-	int flySpeed = 460;
+	int flySpeed = 450;
 	int count = 0;
 	int setFSpeed = 0;
 	int flywheelSpeeds = 2;
@@ -318,7 +318,7 @@ void opcontrol() {
 				setFSpeed ++;
 				if(setFSpeed >= flywheelSpeeds) { 
 					setFSpeed = 0;
-					flySpeed = 460;
+					flySpeed = 450;
 				}
 				else if (setFSpeed == 1) {
 					flySpeed = 411;
