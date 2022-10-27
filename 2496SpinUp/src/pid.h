@@ -341,7 +341,7 @@ void blueHalfAwpRight() {
 
 void testblueHalfAwpRight() {
     
-    velocitySpinFlywheel(100);
+    velocitySpinFlywheel(472);
     moveIntake(127);
     chas_move(75, 75);
     delay(500);
@@ -350,18 +350,18 @@ void testblueHalfAwpRight() {
     pidturn(217);
     delay(1500);
     spinIndexer(-1, 60);
-    velocitySpinFlywheel(108);
+    velocitySpinFlywheel(510);
 
     delay(750);
     spinIndexer(-1, 60);
-    velocitySpinFlywheel(116);
+    velocitySpinFlywheel(548);
     delay(800);
     spinIndexer(-1, 60);
     delay(500);
     
-    velocitySpinFlywheel(0);
     pidturn(180);
     chas_move(70, 70);
+    velocitySpinFlywheel(0);
     delay(500);
     chas_move(0, 0);
     delay(500);
