@@ -51,7 +51,7 @@ void competition_initialize() {
 
 	bool selected = true;
 	int localTime = 0;
-	int totalAutons = 6;
+	int totalAutons = 7;
 	con.clear();
 
 	while(true) {
@@ -84,10 +84,10 @@ void competition_initialize() {
 					con.print(0, 0, "Selected: %d Blue Right", currAuton);
 					break;
 				case(5):
-					con.print(0, 0, "Selected: %d Solo AWP", currAuton);
+					con.print(0, 0, "Selected: %d Red Solo AWP", currAuton);
 					break;
 				case(6):
-					con.print(0, 0, "Selected: %d Solo AWP", currAuton);
+					con.print(0, 0, "Selected: %d Blue Solo AWP", currAuton);
 					break;
 				case(7):
 					con.print(0, 0, "Selected: %d None", currAuton);
@@ -111,9 +111,9 @@ void competition_initialize() {
  * from where it left off.
  */
 void autonomous() {
-	currAuton = 100;
+	// currAuton = 100;
 
-	blueSoloAwp();
+	// blueSoloAwp();
 	
 	
 	if(currAuton == 1) {
