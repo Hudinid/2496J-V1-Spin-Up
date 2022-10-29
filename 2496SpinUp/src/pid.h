@@ -258,99 +258,23 @@ void pidturn (float target){
 // half awp - same as elim awp ? fire 2, spin roller, intake and shoot more
 
 
-void redHalfAwpRight() {
-    spinFlywheel(100);
-    moveIntake(127);
-    chas_move(75, 75);
-    delay(500);
-    chas_move(0, 0);
-    delay(250);
-    pidturn(217);
-    delay(1500);
-    spinIndexer(-1, 60);
-    spinFlywheel(108);
-
-    delay(750);
-    spinIndexer(-1, 60);
-    spinFlywheel(116);
-    delay(800);
-    spinIndexer(-1, 60);
-    delay(500);
-    
-    spinFlywheel(0);
-    pidturn(180);
-    chas_move(70, 70);
-    delay(500);
-    chas_move(0, 0);
-    delay(500);
-    pidturn(94);
-    
-    pidmove(1625);
-    pidturn(178);
-    chas_move(35, 35);
-    moveIntake(-70);
-
-    delay(1000);
-    chas_move(5, 5);
-    // chas_move(0, 0);
-    spinToRed();
-
-}
 
 void blueHalfAwpRight() {
-    spinFlywheel(100);
+    
+    velocitySpinFlywheel(480);
     moveIntake(127);
     chas_move(75, 75);
     delay(500);
     chas_move(0, 0);
-    delay(250);
-    pidturn(217);
-    delay(1500);
-    spinIndexer(-1, 60);
-    spinFlywheel(108);
-
-    delay(750);
-    spinIndexer(-1, 60);
-    spinFlywheel(116);
-    delay(800);
-    spinIndexer(-1, 60);
-    delay(500);
-    
-    spinFlywheel(0);
-    pidturn(180);
-    chas_move(70, 70);
-    delay(500);
-    chas_move(0, 0);
-    delay(500);
-    pidturn(94);
-    
-    pidmove(1625);
-    pidturn(178);
-    chas_move(35, 35);
-    moveIntake(-70);
-
+    pidturn(218);
     delay(1000);
-    chas_move(5, 5);
-    // chas_move(0, 0);
-    spinToBlue();
-}
-
-void testBlueHalfAwpRight() {
-    
-    velocitySpinFlywheel(469);
-    moveIntake(127);
-    chas_move(75, 75);
-    delay(500);
-    chas_move(0, 0);
-    pidturn(217);
-    delay(1500);
     spinIndexer(-1, 60);
     // velocitySpinFlywheel(510);
 
-    delay(1550);
+    delay(1500);
     spinIndexer(-1, 60);
     // velocitySpinFlywheel(548);
-    delay(950);
+    delay(1050);
     spinIndexer(-2, 80);
     delay(750);
     
@@ -359,18 +283,64 @@ void testBlueHalfAwpRight() {
     // velocitySpinFlywheel(0);
     delay(500);
     chas_move(0, 0);
+    moveIntake(-70);
     
     pidturn(94);
     
-    pidmove(1750);
+    pidmove(1725);
     pidturn(178);
-    chas_move(35, 35);
-    moveIntake(-70);
-
-    delay(750);
-    chas_move(5, 5);
-    // chas_move(0, 0);
+    
+    // flipping a coin
+    chas_move(20, 100);
+    delay(500);
+    chas_move(127, 0);
+    
+    delay(500);
+    chas_move(20, 20);
+    
+    delay(400);
+    //spin roller
     spinToBlue();
+    
+}
+
+void redHalfAwpRight() {
+    
+    velocitySpinFlywheel(480);
+    moveIntake(127);
+    chas_move(75, 75);
+    delay(500);
+    chas_move(0, 0);
+    pidturn(218);
+    delay(1000);
+    spinIndexer(-1, 60);
+    // velocitySpinFlywheel(510);
+
+    delay(1500);
+    spinIndexer(-1, 60);
+    // velocitySpinFlywheel(548);
+    delay(1050);
+    spinIndexer(-2, 80);
+    delay(750);
+    
+    pidturn(180);
+    chas_move(70, 70);
+    // velocitySpinFlywheel(0);
+    delay(500);
+    chas_move(0, 0);
+    moveIntake(-70);
+    
+    pidturn(94);
+    
+    pidmove(1670);
+    pidturn(182);
+    
+    // flipping a coin
+    chas_move(20, 20);
+    delay(1300);
+    //spin roller
+    spinToRed();
+    
 }
 
 void redHalfAwpLeft() {
@@ -581,7 +551,8 @@ void redSoloAwp() {
     velocitySpinFlywheel(490);
 
     pidturn(-129);
-    pidmove(1360);
+    delay(100);
+    pidmove(1355);
     moveIntake(127);
     
     //collect discs
@@ -600,7 +571,7 @@ void redSoloAwp() {
     delay(550);
     
     spinIndexer(-2, 60);
-    delay(600);
+    delay(550);
 
     //turn towards discs -- theoretical
     // spinFlywheel(60);
@@ -622,10 +593,10 @@ void redSoloAwp() {
 void blueSoloAwp() {
     //setup straight (roller perpendicular to robot, as far forward without touching disc)
     //charge flywheel
-    velocitySpinFlywheel(540);
+    velocitySpinFlywheel(504);
     chas_move(30, 30);
     moveIntake(-50);
-    delay(400);
+    delay(300);
     moveIntake(0);
     delay(100); 
 
@@ -634,23 +605,23 @@ void blueSoloAwp() {
     chas_move(-70, -70);
     delay(100);
     pidturn(3);
-    delay(300);
+    delay(400);
         
     //fire discs
     spinIndexer(-1, 60);
     // spinFlywheel(113);
 
-    delay(850);
+    delay(700);
     
-    spinIndexer(-2, 60);
-    moveIntake(-30);
+    spinIndexer(-2, 80);
+    moveIntake(-28);
     delay(600);
 
     //drive and pick up 3 disc stack
-    velocitySpinFlywheel(490);
+    velocitySpinFlywheel(470);
 
     pidturn(-129);
-    pidmove(1360);
+    pidmove(1325);
     moveIntake(127);
     
     //collect discs
@@ -677,11 +648,11 @@ void blueSoloAwp() {
     pidturn(-142);
     spinIndexer(-1, 60);
     moveIntake(127);
-    pidmove(4154);
+    pidmove(4123);
     moveIntake(-100);
     
     chas_move(100,0);
-    moveIntake(-100);
+    moveIntake(-50);
     delay(500);
     chas_move(30,30);
     delay(150);
