@@ -594,7 +594,7 @@ void redSoloAwp() {
 void blueSoloAwp() {
     //setup straight (roller perpendicular to robot, as far forward without touching disc)
     //charge flywheel
-    velocitySpinFlywheel(504);
+    velocitySpinFlywheel(503);
     chas_move(30, 30);
     moveIntake(-50);
     delay(300);
@@ -613,17 +613,17 @@ void blueSoloAwp() {
     spinIndexer(-1, 60);
     // spinFlywheel(113);
 
-    delay(700);
+    delay(620);
     
     spinIndexer(-2, 80);
-    moveIntake(-28);
-    delay(600);
+    moveIntake(-50);
+    delay(700);
 
     //drive and pick up 3 disc stack
-    velocitySpinFlywheel(470);
+    velocitySpinFlywheel(460);
 
-    pidturn(-129);
-    pidmove(1325);
+    pidturn(-131);
+    pidmove(1345);
     moveIntake(127);
     
     //collect discs
@@ -632,7 +632,7 @@ void blueSoloAwp() {
     chas_move(0, 0);
 
     //turn towards goal
-    pidturn(-32);
+    pidturn(-31);
 
     //fire three discs
     spinIndexer(-1, 60);
@@ -642,7 +642,7 @@ void blueSoloAwp() {
     delay(550);
     
     spinIndexer(-2, 60);
-    delay(600);
+    delay(500);
 
     //turn towards discs -- theoretical
     // spinFlywheel(60);
@@ -650,11 +650,11 @@ void blueSoloAwp() {
     pidturn(-143);
     spinIndexer(-1, 60);
     moveIntake(127);
-    pidmove(4123);
+    pidmove(4120);
     moveIntake(-100);
     
-    chas_move(100,0);
-    moveIntake(-50);
+    chas_move(110,0);
+    moveIntake(-60);
     delay(500);
     chas_move(30,30);
     delay(150);
