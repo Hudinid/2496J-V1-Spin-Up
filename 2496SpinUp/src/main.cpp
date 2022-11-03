@@ -1,8 +1,9 @@
 #include "main.h"
 #include "global.h"
 #include "pid.h"
+#include "pros/misc.h"
 using namespace pros;
-using namespace std;
+using namespace std;	
 using namespace glb;
 
 //test - RH
@@ -157,6 +158,7 @@ void opcontrol() {
 	// while(imu.is_calibrating()) {
 	// 	delay(5);
 	// }
+
 	con.clear();
 	delay(50);
 	con.print(0, 0, "jeff don't int");
@@ -184,9 +186,10 @@ void opcontrol() {
 	int setFSpeed = 0;
 	int flywheelSpeeds = 2;
 	int count2 = 0;
+	int imu_heading;
 
 	int distValue = dist.get();
-	int confDistValue = dist.get_confidence(); // from a scale of 0-63, im assuming how good it is
+	int confDistValue = dist.get_confidence(); // from a scale of 0-63, im assuming how good it is // yea it is
 	while(true) {
 		distValue = dist.get();
 		int power = con.get_analog(ANALOG_LEFT_Y); // left joystick y axis is power
@@ -333,17 +336,97 @@ void opcontrol() {
 		}
 		else hitToggleFSpeed = false;
 
-		 
+//expansion conditional
+	//factors == 
+		//imu rotation
+		//distance
+		//controller button press
+
+
+		//int imu_heading; //get current rotation ** DEFINED EARLIER **
+
+		imu_heading = imu.get_heading();
+		con.print(3,0, "IMU ROTATION %d", imu_heading);
+
+		if(currAuton == 1 || currAuton == 3 ||  currAuton == 5 || currAuton == 6){
+			if(distValue <= 1000){
+				if(imu_heading < 60 && imu_heading > 20){
+					con.clear();
+					con.print(0,0, "EXPANSION PRIMED");
+					con.print(1,0, "CLICK X to FIRE");
+					if(con.get_digital(E_CONTROLLER_DIGITAL_X)) {
+						expansion.set_value(true);
+					}
+					else{
+
+					}
+				}
+				else if (imu_heading < 240 && imu_heading > 200) {
+					con.clear();
+					con.print(0,0, "EXPANSION PRIMED");
+					con.print(1,0, "CLICK X to FIRE");
+					if(con.get_digital(E_CONTROLLER_DIGITAL_X)) {
+						expansion.set_value(true);
+					}
+				}
+				else {
+					con.clear();
+					con.print(0, 0, "Inert. REQ NOT MET:");
+					con.print(2, 0, "Current: %d ", imu_heading);
+				}
+			}
+			else{
+				con.clear();
+				con.print(0,0, "TOO FAR FROM WALL");
+			}
+		}
+		else if(currAuton == 2 || currAuton == 4){
+			if(distValue <= 1010){
+				if(imu_heading < 330 && imu_heading > 290){
+					con.clear();
+					con.print(0,0, "EXPANSION PRIMED");
+					con.print(1,0, "CLICK X to FIRE");
+					if(con.get_digital(E_CONTROLLER_DIGITAL_X)) {
+						expansion.set_value(true);
+					}
+					else{
+
+					}
+				}
+				else if (imu_heading < 150 && imu_heading > 110) {
+					con.clear();
+					con.print(0,0, "EXPANSION PRIMED");
+					con.print(1,0, "CLICK X to FIRE");
+					if(con.get_digital(E_CONTROLLER_DIGITAL_X)) {
+						expansion.set_value(true);
+					}
+				}
+				else {
+					con.clear();
+					con.print(0, 0, "Inert. REQ NOT MET:");
+					con.print(2, 0, "Current: %d ", imu_heading);
+				}
+			}	
+			else{
+				con.clear();
+				con.print(0,0, "TOO FAR FROM WALL");
+			}
+		}
+
+
 		if(con.get_digital(E_CONTROLLER_DIGITAL_LEFT)) {
 			con.rumble(". - .");
 		}
 
-		
-		if(con.get_digital(E_CONTROLLER_DIGITAL_X)) {
+		//MANUAL OVERIDE == BUTTON Y
+		if(con.get_digital(E_CONTROLLER_DIGITAL_Y)) {
 			expansion.set_value(true);
 		}
-		else {
-			
+		else if(con.get_digital(E_CONTROLLER_DIGITAL_DOWN)) {
+			expansion.set_value(false);
+		}
+		else{
+
 		}	
 
 		
