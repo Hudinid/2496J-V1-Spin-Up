@@ -110,10 +110,10 @@ void competition_initialize() {
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {
+void autonomous() {  
 	// currAuton = 100;
 
-	// blueSoloAwp();
+	// skills();
 	
 	
 	if(currAuton == 1) {
@@ -179,12 +179,16 @@ void opcontrol() {
 	// delay(50);
 	// con.print(2, 0, "go over the speed limit-elkins");
 	// delay(50);
-	int flySpeed = 450;
+	int flySpeed = 420;
 	int count = 0;
 	int setFSpeed = 0;
 	int flywheelSpeeds = 2;
 	int count2 = 0;
+
+	int distValue = dist.get();
+	int confDistValue = dist.get_confidence(); // from a scale of 0-63, im assuming how good it is
 	while(true) {
+		distValue = dist.get();
 		int power = con.get_analog(ANALOG_LEFT_Y); // left joystick y axis is power
 		int valForTurn = con.get_analog(ANALOG_RIGHT_X); // right joystick x axis controls turn
 
@@ -318,10 +322,10 @@ void opcontrol() {
 				setFSpeed ++;
 				if(setFSpeed >= flywheelSpeeds) { 
 					setFSpeed = 0;
-					flySpeed = 450;
+					flySpeed = 420;
 				}
 				else if (setFSpeed == 1) {
-					flySpeed = 411;
+					flySpeed = 390;
 				}
 				
 			}

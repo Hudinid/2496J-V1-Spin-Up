@@ -17,6 +17,7 @@ namespace glb {
     #define P_IMU 17
     #define P_EXPANSION 'A'
     #define P_SELECTOR 'H'
+    #define P_DIST 10
 
     Motor RF (P_RF, E_MOTOR_GEARSET_06, 1);
     Motor RB (P_RB, E_MOTOR_GEARSET_06, 1);
@@ -31,6 +32,6 @@ namespace glb {
     Imu imu(P_IMU);
     ADIDigitalOut expansion(P_EXPANSION);
     ADIDigitalIn button (P_SELECTOR);
-    
+    Distance dist (P_DIST);
 }
 #endif
