@@ -425,7 +425,7 @@ void blueHalfAwpLeft() {
     delay(1000);
     
     spinIndexer(-2, 60);
-    moveIntake(-40);
+    moveIntake(-55);
     delay(1000);
 
     //drive and pick up 3 disc stack
@@ -453,7 +453,7 @@ void blueHalfAwpLeft() {
     spinIndexer(-2, 60);
     delay(650);
 
-    spinIndexer(-2, 80);
+    spinIndexer(-2.5, 80);
     delay(1000);
     velocitySpinFlywheel(0);
     // stopIntake();
