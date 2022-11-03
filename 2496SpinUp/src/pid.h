@@ -47,7 +47,7 @@ void spinToBlue() {
     optical.set_led_pwm(25);
     while(hue < 80 || hue > 220) {
         hue = optical.get_hue();
-        INTAKE.move(-55);
+        INTAKE.move(55);
         delay(5);
     }
     INTAKE.move(0);
@@ -60,7 +60,7 @@ void spinToRed() {
 
     while(hue > 70) {
         hue = optical.get_hue();
-        INTAKE.move(-55);
+        INTAKE.move(55);
         delay(5);
     }
 
@@ -343,12 +343,12 @@ void redHalfAwpRight() {
 void redHalfAwpLeft() {//setup straight (roller perpendicular to robot, as far forward without touching disc)
 //setup straight (roller perpendicular to robot, as far forward without touching disc)
     //charge flywheel
-    velocitySpinFlywheel(495);
+    velocitySpinFlywheel(532);
     chas_move(30, 30);
     moveIntake(-70);
-    delay(300);
-    moveIntake(0);
-    delay(100); 
+    delay(250);
+    // moveIntake(0);
+    // delay(100); 
 
     //spin roller
     spinToRed();
@@ -356,24 +356,24 @@ void redHalfAwpLeft() {//setup straight (roller perpendicular to robot, as far f
     chas_move(-70, -70);
     delay(100);
     pidturn(3);
-    delay(300);
+    delay(1250);
         
     //fire discs
     spinIndexer(-1, 60);
     // spinFlywheel(113);
 
-    delay(620);
+    delay(1000);
     
-    spinIndexer(-2, 80);
+    spinIndexer(-2, 60);
     moveIntake(-40);
-    delay(600);
+    delay(1000);
 
     //drive and pick up 3 disc stack
-    velocitySpinFlywheel(463);
+    velocitySpinFlywheel(468);
 
     pidturn(-131);
-    pidmove(1338);
-    moveIntake(127);
+    pidmove(1342);
+    moveIntake(100);
     
     //collect discs
     chas_move(80, 80); // speed up later
@@ -381,8 +381,8 @@ void redHalfAwpLeft() {//setup straight (roller perpendicular to robot, as far f
     chas_move(0, 0);
 
     //turn towards goal
-    pidturn(-29);
-
+    pidturn(-32);
+    delay(1000);
     //fire three discs
     spinIndexer(-1, 60);
     delay(400);
@@ -390,10 +390,12 @@ void redHalfAwpLeft() {//setup straight (roller perpendicular to robot, as far f
     spinIndexer(-1, 60);
     delay(350);
     
-    spinIndexer(-2, 80);
+    spinIndexer(-2, 60);
     delay(650);
 
-    // velocitySpinFlywheel(0);
+    spinIndexer(-2, 80);
+    delay(1000);
+    velocitySpinFlywheel(0);
     // stopIntake();
 }   
 
@@ -401,12 +403,12 @@ void redHalfAwpLeft() {//setup straight (roller perpendicular to robot, as far f
 void blueHalfAwpLeft() {
     //setup straight (roller perpendicular to robot, as far forward without touching disc)
     //charge flywheel
-    velocitySpinFlywheel(495);
+    velocitySpinFlywheel(535);
     chas_move(30, 30);
     moveIntake(-70);
-    delay(300);
-    moveIntake(0);
-    delay(100); 
+    delay(250);
+    // moveIntake(0);
+    // delay(100); 
 
     //spin roller
     spinToBlue();
@@ -414,24 +416,24 @@ void blueHalfAwpLeft() {
     chas_move(-70, -70);
     delay(100);
     pidturn(3);
-    delay(300);
+    delay(1250);
         
     //fire discs
     spinIndexer(-1, 60);
     // spinFlywheel(113);
 
-    delay(620);
+    delay(1000);
     
-    spinIndexer(-2, 80);
+    spinIndexer(-2, 60);
     moveIntake(-40);
-    delay(600);
+    delay(1000);
 
     //drive and pick up 3 disc stack
-    velocitySpinFlywheel(463);
+    velocitySpinFlywheel(468);
 
     pidturn(-131);
-    pidmove(1338);
-    moveIntake(127);
+    pidmove(1342);
+    moveIntake(100);
     
     //collect discs
     chas_move(80, 80); // speed up later
@@ -439,8 +441,8 @@ void blueHalfAwpLeft() {
     chas_move(0, 0);
 
     //turn towards goal
-    pidturn(-29);
-
+    pidturn(-32);
+    delay(1000);
     //fire three discs
     spinIndexer(-1, 60);
     delay(400);
@@ -448,11 +450,12 @@ void blueHalfAwpLeft() {
     spinIndexer(-1, 60);
     delay(350);
     
-    spinIndexer(-2, 80);
+    spinIndexer(-2, 60);
     delay(650);
 
-    
-    // velocitySpinFlywheel(0);
+    spinIndexer(-2, 80);
+    delay(1000);
+    velocitySpinFlywheel(0);
     // stopIntake();
 }
 
