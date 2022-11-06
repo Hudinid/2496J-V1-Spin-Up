@@ -114,7 +114,7 @@ void competition_initialize() {
 void autonomous() {  
 	currAuton = 100;
 
-	blueHalfAwpLeft();
+	blueHalfAwpRight();
 	
 	if(currAuton == 1) {
 		redHalfAwpLeft();
@@ -352,8 +352,8 @@ void opcontrol() {
 				if(imu_heading < 60 && imu_heading > 20){
 					con.clear();
 					con.print(0,0, "EXPANSION PRIMED");
-					con.print(1,0, "CLICK X to FIRE");
-					if(con.get_digital(E_CONTROLLER_DIGITAL_X)) {
+					con.print(1,0, "CLICK Y to FIRE");
+					if(con.get_digital(E_CONTROLLER_DIGITAL_Y)) {
 						expansion.set_value(true);
 					}
 					else{
@@ -363,8 +363,8 @@ void opcontrol() {
 				else if (imu_heading < 240 && imu_heading > 200) {
 					con.clear();
 					con.print(0,0, "EXPANSION PRIMED");
-					con.print(1,0, "CLICK X to FIRE");
-					if(con.get_digital(E_CONTROLLER_DIGITAL_X)) {
+					con.print(1,0, "CLICK Y to FIRE");
+					if(con.get_digital(E_CONTROLLER_DIGITAL_Y)) {
 						expansion.set_value(true);
 					}
 				}
@@ -384,8 +384,8 @@ void opcontrol() {
 				if(imu_heading < 330 && imu_heading > 290){
 					con.clear();
 					con.print(0,0, "EXPANSION PRIMED");
-					con.print(1,0, "CLICK X to FIRE");
-					if(con.get_digital(E_CONTROLLER_DIGITAL_X)) {
+					con.print(1,0, "CLICK Y to FIRE");
+					if(con.get_digital(E_CONTROLLER_DIGITAL_Y)) {
 						expansion.set_value(true);
 					}
 					else{
@@ -395,8 +395,8 @@ void opcontrol() {
 				else if (imu_heading < 150 && imu_heading > 110) {
 					con.clear();
 					con.print(0,0, "EXPANSION PRIMED");
-					con.print(1,0, "CLICK X to FIRE");
-					if(con.get_digital(E_CONTROLLER_DIGITAL_X)) {
+					con.print(1,0, "CLICK Y to FIRE");
+					if(con.get_digital(E_CONTROLLER_DIGITAL_Y)) {
 						expansion.set_value(true);
 					}
 				}
@@ -418,7 +418,7 @@ void opcontrol() {
 		}
 
 		//MANUAL OVERIDE == BUTTON Y
-		if(con.get_digital(E_CONTROLLER_DIGITAL_Y)) {
+		if(con.get_digital(E_CONTROLLER_DIGITAL_X)) {
 			expansion.set_value(true);
 		}
 		else if(con.get_digital(E_CONTROLLER_DIGITAL_DOWN)) {

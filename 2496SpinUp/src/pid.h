@@ -263,19 +263,19 @@ void pidturn (float target){
 
 void blueHalfAwpRight() {
  
-    velocitySpinFlywheel(474);
+    velocitySpinFlywheel(477);
     moveIntake(127);
     chas_move(75, 75);
     delay(500);
     chas_move(0, 0);
-    pidturn(218);
+    pidturn(219);
     delay(1500);
     spinIndexer(-1, 60);
     // velocitySpinFlywheel(510);
 
     delay(1750);
     spinIndexer(-1, 60);
-    // velocitySpinFlywheel(548);
+    velocitySpinFlywheel(482);
     delay(1000);
     spinIndexer(-2, 80);
     delay(750);
@@ -289,12 +289,13 @@ void blueHalfAwpRight() {
     
     pidturn(94);
     
-    pidmove(1680);
-    pidturn(182);
+    pidmove(1610);
+    pidturn(180);
     
     // flipping a coin
-    chas_move(30, 30);
-    delay(1000);
+    chas_move(50, 50);
+    delay(950);
+    chas_move(0,0);
     //spin roller
     spinToBlue();
           
@@ -303,7 +304,7 @@ void blueHalfAwpRight() {
 
 void redHalfAwpRight() {
     
-    velocitySpinFlywheel(474);
+    velocitySpinFlywheel(476);
     moveIntake(127);
     chas_move(75, 75);
     delay(500);
@@ -315,7 +316,7 @@ void redHalfAwpRight() {
 
     delay(1750);
     spinIndexer(-1, 60);
-    // velocitySpinFlywheel(548);
+    velocitySpinFlywheel(480);
     delay(1000);
     spinIndexer(-2, 80);
     delay(750);
@@ -329,12 +330,12 @@ void redHalfAwpRight() {
     
     pidturn(94);
     
-    pidmove(1680);
-    pidturn(182);
+    pidmove(1610);
+    pidturn(180);
     
     // flipping a coin
-    chas_move(30, 30);
-    delay(1000);
+    chas_move(50, 50);
+    delay(900);
     //spin roller
     spinToRed();
     
@@ -453,7 +454,7 @@ void blueHalfAwpLeft() {
     spinIndexer(-2, 60);
     delay(650);
 
-    spinIndexer(-2.5, 80);
+    spinIndexer(-2, 80);
     delay(1000);
     velocitySpinFlywheel(0);
     // stopIntake();
