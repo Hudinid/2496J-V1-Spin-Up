@@ -112,9 +112,9 @@ void competition_initialize() {
  * from where it left off.
  */
 void autonomous() {  
-	currAuton = 100;
+	// currAuton = 100;
 
-	blueHalfAwpLeft();
+	// blueHalfAwpLeft();
 	
 	if(currAuton == 1) {
 		redHalfAwpLeft();
@@ -186,6 +186,7 @@ void opcontrol() {
 	int flywheelSpeeds = 2;
 	int count2 = 0;
 	int imu_heading;
+	int endgameTimer = 0;
 
 	int distValue = dist.get();
 	int confDistValue = dist.get_confidence(); // from a scale of 0-63, im assuming how good it is // yea it is
@@ -209,11 +210,12 @@ void opcontrol() {
 			
 			con.clear();
 			delay(50);
-			con.print(0, 0, "%f", turn);
+			con.print(0, 0, "%d", endgameTimer);
 			delay(50);
 			con.print(1, 0, "%d", flySpeed);
 			
 		}
+
 
 		
 
@@ -281,7 +283,7 @@ void opcontrol() {
 			F1.move_velocity(flySpeed);
 			F2.move_velocity(flySpeed);
 			count2 ++;
-			if(count2 % 10000) {
+			if(count2 % 1000) {
 				con.rumble(".");
 			}
 		} 
@@ -344,93 +346,23 @@ void opcontrol() {
 
 		//int imu_heading; //get current rotation ** DEFINED EARLIER **
 
-		imu_heading = imu.get_heading();
-		con.print(3,0, "IMU ROTATION %d", imu_heading);
-
-		if(currAuton == 1 || currAuton == 3 ||  currAuton == 5 || currAuton == 6){
-			if(distValue <= 1000){
-				if(imu_heading < 60 && imu_heading > 20){
-					con.clear();
-					con.print(0,0, "EXPANSION PRIMED");
-					con.print(1,0, "CLICK Y to FIRE");
-					if(con.get_digital(E_CONTROLLER_DIGITAL_Y)) {
-						expansion.set_value(true);
-					}
-					else{
-
-					}
-				}
-				else if (imu_heading < 240 && imu_heading > 200) {
-					con.clear();
-					con.print(0,0, "EXPANSION PRIMED");
-					con.print(1,0, "CLICK Y to FIRE");
-					if(con.get_digital(E_CONTROLLER_DIGITAL_Y)) {
-						expansion.set_value(true);
-					}
-				}
-				else {
-					con.clear();
-					con.print(0, 0, "Inert. REQ NOT MET:");
-					con.print(2, 0, "Current: %d ", imu_heading);
-				}
-			}
-			else{
-				con.clear();
-				con.print(0,0, "TOO FAR FROM WALL");
-			}
-		}
-		else if(currAuton == 2 || currAuton == 4){
-			if(distValue <= 1010){
-				if(imu_heading < 330 && imu_heading > 290){
-					con.clear();
-					con.print(0,0, "EXPANSION PRIMED");
-					con.print(1,0, "CLICK Y to FIRE");
-					if(con.get_digital(E_CONTROLLER_DIGITAL_Y)) {
-						expansion.set_value(true);
-					}
-					else{
-
-					}
-				}
-				else if (imu_heading < 150 && imu_heading > 110) {
-					con.clear();
-					con.print(0,0, "EXPANSION PRIMED");
-					con.print(1,0, "CLICK Y to FIRE");
-					if(con.get_digital(E_CONTROLLER_DIGITAL_Y)) {
-						expansion.set_value(true);
-					}
-				}
-				else {
-					con.clear();
-					con.print(0, 0, "Inert. REQ NOT MET:");
-					con.print(2, 0, "Current: %d ", imu_heading);
-				}
-			}	
-			else{
-				con.clear();
-				con.print(0,0, "TOO FAR FROM WALL");
-			}
-		}
-
-
 		if(con.get_digital(E_CONTROLLER_DIGITAL_LEFT)) {
 			con.rumble(". - .");
 		}
 
 		//MANUAL OVERIDE == BUTTON Y
-		if(con.get_digital(E_CONTROLLER_DIGITAL_X)) {
+		if(con.get_digital(E_CONTROLLER_DIGITAL_X) && endgameTimer >= 105000) {
 			expansion.set_value(true);
 		}
-		else if(con.get_digital(E_CONTROLLER_DIGITAL_DOWN)) {
-			expansion.set_value(false);
-		}
-		else{
-
-		}	
-
 		
 
+		imu_heading = imu.get_heading();
 
+		if(con.get_digital(E_CONTROLLER_DIGITAL_RIGHT)) { 
+			endgameTimer = 105000;
+		}
+
+		endgameTimer+= 10;
 		count ++;
 		delay(5);
 	}	

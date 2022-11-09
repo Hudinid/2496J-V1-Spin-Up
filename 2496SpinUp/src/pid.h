@@ -346,6 +346,8 @@ void redHalfAwpLeft() {//setup straight (roller perpendicular to robot, as far f
 //setup straight (roller perpendicular to robot, as far forward without touching disc)
     //setup straight (roller perpendicular to robot, as far forward without touching disc)
     //charge flywheel
+    //setup straight (roller perpendicular to robot, as far forward without touching disc)
+    //charge flywheel
     velocitySpinFlywheel(520);
     chas_move(30, 30);
     moveIntake(-70);
