@@ -408,7 +408,7 @@ void redHalfAwpLeft() {//setup straight (roller perpendicular to robot, as far f
 void blueHalfAwpLeft() {
     //setup straight (roller perpendicular to robot, as far forward without touching disc)
     //charge flywheel
-    velocitySpinFlywheel(557);
+    velocitySpinFlywheel(520);
     chas_move(30, 30);
     moveIntake(-50);
     delay(250);
@@ -434,7 +434,7 @@ void blueHalfAwpLeft() {
     delay(1000);
 
     //drive and pick up 3 disc stack
-    velocitySpinFlywheel(475);
+    velocitySpinFlywheel(470);
 
     pidturn(-130);
     pidmove(1360);
