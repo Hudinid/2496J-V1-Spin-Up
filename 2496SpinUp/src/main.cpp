@@ -91,6 +91,8 @@ void competition_initialize() {
 					con.print(0, 0, "Selected: %d Blue Solo AWP", currAuton);
 					break;
 				case(7):
+					con.print(0, 0, "Selected: %d Skills", currAuton);
+				case(8):
 					con.print(0, 0, "Selected: %d None", currAuton);
 					
 			}
@@ -114,8 +116,8 @@ void competition_initialize() {
 void autonomous() {  
 	currAuton = 100;
 
-	blueHalfAwpLeft();
-	
+	skills_discs();
+
 	if(currAuton == 1) {
 		redHalfAwpLeft();
 	}
@@ -135,6 +137,9 @@ void autonomous() {
 		blueSoloAwp();
 	}
 	if(currAuton ==7) {
+		skills_discs();
+	}
+	if(currAuton == 8) {
 
 	}
 }
