@@ -285,7 +285,7 @@ void blueHalfAwpRight() {
     // velocitySpinFlywheel(0);
     delay(500);
     chas_move(0, 0);
-    moveIntake(-100);
+    moveIntake(-120);
     
     pidturn(94);
     
@@ -326,7 +326,7 @@ void redHalfAwpRight() {
     // velocitySpinFlywheel(0);
     delay(500);
     chas_move(0, 0);
-    moveIntake(-100);
+    moveIntake(-120);
     
     pidturn(94);
     
@@ -345,7 +345,7 @@ void redHalfAwpRight() {
 void redHalfAwpLeft() {
 //setup straight (roller perpendicular to robot, as far forward without touching disc)
 //charge flywheel
-    velocitySpinFlywheel(513);
+    velocitySpinFlywheel(520);
     chas_move(30, 30);
     moveIntake(-70);
     delay(250);
@@ -383,7 +383,7 @@ void redHalfAwpLeft() {
     chas_move(0, 0);
 
     //turn towards goal
-    pidturn(-31);
+    pidturn(-30);
     delay(1000);
     //fire three discs
     spinIndexer(-1, 60);
@@ -407,7 +407,7 @@ void redHalfAwpLeft() {
 void blueHalfAwpLeft() {
     //setup straight (roller perpendicular to robot, as far forward without touching disc)
 //charge flywheel
-    velocitySpinFlywheel(513);
+    velocitySpinFlywheel(520);
     chas_move(30, 30);
     moveIntake(-70);
     delay(250);
@@ -445,7 +445,7 @@ void blueHalfAwpLeft() {
     chas_move(0, 0);
 
     //turn towards goal
-    pidturn(-31);
+    pidturn(-30);
     delay(1000);
     //fire three discs
     spinIndexer(-1, 60);
@@ -611,7 +611,7 @@ void blueSoloAwp() {
 void skills_discs() {
     velocitySpinFlywheel(516);
     chas_move(30, 30);
-    moveIntake(-127);
+    moveIntake(-50);
     delay(150);
     chas_move(0,0);
     delay(250);
@@ -699,7 +699,7 @@ void skills_discs() {
     delay(1000);
 
     pidmove(-100);
-    pidturn(90);
+    pidturn(88);
     
     moveIntake(127);
     /*chas_move(30, 30);
@@ -708,7 +708,9 @@ void skills_discs() {
     chas_move(0,0);
     delay(250);*/
     
-    pidmove(100);
+    pidmove(300);
+    pidmove(-300);
+    pidturn(90);
     
     chas_move(50, 50);
     

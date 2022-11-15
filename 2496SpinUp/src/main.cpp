@@ -52,7 +52,7 @@ void competition_initialize() {
 
 	bool selected = true;
 	int localTime = 0;
-	int totalAutons = 7;
+	int totalAutons = 8;
 	con.clear();
 
 	while(true) {
@@ -114,9 +114,9 @@ void competition_initialize() {
  * from where it left off.
  */
 void autonomous() {  
-	currAuton = 100;
+	// currAuton = 100;
 
-	skills_discs();
+	// skills_discs();
 
 	if(currAuton == 1) {
 		redHalfAwpLeft();
@@ -367,7 +367,7 @@ void opcontrol() {
 			endgameTimer = 105000;
 		}
 
-		endgameTimer+= 10;
+		endgameTimer+= 8;
 		count ++;
 		delay(5);
 	}	
