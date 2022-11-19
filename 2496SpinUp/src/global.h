@@ -18,6 +18,7 @@ namespace glb {
     #define P_EXPANSION 'A'
     #define P_SELECTOR 'H'
     #define P_DIST 10
+    #define P_ANGLER 'E'
 
     Motor RF (P_RF, E_MOTOR_GEARSET_06, 1);
     Motor RB (P_RB, E_MOTOR_GEARSET_06, 1);
@@ -31,6 +32,7 @@ namespace glb {
     Optical optical (P_OPTICAL);
     Imu imu(P_IMU);
     ADIDigitalOut expansion(P_EXPANSION);
+    ADIDigitalOut angler(P_ANGLER);
     ADIDigitalIn button (P_SELECTOR);
     Distance dist (P_DIST);
 }

@@ -25,6 +25,7 @@ void on_center_button() {
 void initialize() {
 
 	expansion.set_value(false);
+	angler.set_value(true);
 }
 	
 /**
@@ -326,15 +327,19 @@ void opcontrol() {
 		}
 
 		if(con.get_digital(E_CONTROLLER_DIGITAL_Y)) {
+			con.rumble(".");
 			if(!hitToggleFSpeed) {
 				hitToggleFSpeed = true;
 				setFSpeed ++;
 				if(setFSpeed >= flywheelSpeeds) { 
 					setFSpeed = 0;
 					flySpeed = 420;
+					angler.set_value(true);
 				}
 				else if (setFSpeed == 1) {
-					flySpeed = 390;
+					flySpeed = 410;
+					angler.set_value(false);
+					
 				}
 				
 			}
