@@ -55,9 +55,9 @@ void spinToBlue() {
 }
 
 void spinToRed() {
+    
     double hue = optical.get_hue(); 
     optical.set_led_pwm(25);
-
     while(hue > 70) {
         hue = optical.get_hue();
         INTAKE.move(55);
@@ -293,7 +293,7 @@ void blueHalfAwpRight() {
     pidturn(180);
     
     // flipping a coin
-    chas_move(55, 55);
+    chas_move(50, 50);
     delay(1000);
     chas_move(0, 0);
     //spin roller
@@ -334,7 +334,7 @@ void redHalfAwpRight() {
     pidturn(180);
     
     // flipping a coin
-    chas_move(55, 55);
+    chas_move(50, 50);
     delay(1000);
     chas_move(0, 0);
     //spin roller
@@ -611,8 +611,8 @@ void blueSoloAwp() {
 void skills_discs() {
     velocitySpinFlywheel(516);
     chas_move(30, 30);
-    moveIntake(-50);
-    delay(150);
+    moveIntake(-127);
+    delay(450);
     chas_move(0,0);
     delay(250);
     // moveIntake(0);
@@ -680,7 +680,7 @@ void skills_discs() {
     delay(800);
     chas_move(0, 0);
     
-    pidturn(112);
+    pidturn(108);
     delay(1000);
     moveIntake(-127);
     spinIndexer(-1, 60);
@@ -727,7 +727,7 @@ void skills_discs() {
     
     pidturn(40);
 
-    pidmove(100);
+    pidmove(500);
 
     expansion.set_value(true);
     

@@ -116,7 +116,7 @@ void competition_initialize() {
  */
 void autonomous() {  
 	// currAuton = 100;
-
+	
 	// skills_discs();
 
 	if(currAuton == 1) {
