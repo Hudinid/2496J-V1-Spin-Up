@@ -357,29 +357,29 @@ void redHalfAwpLeft() {
     delay(50);
     chas_move(-70, -70);
     delay(100);
-    pidturn(3);
+    pidturn(4);
     delay(900);
         
     //fire discs
     spinIndexer(-1, 60);
     // spinFlywheel(113);
 
-    delay(800);
+    delay(600);
     
     spinIndexer(-2, 60);
-    moveIntake(-100);
+    moveIntake(-50);
     delay(1000);
 
     //drive and pick up 3 disc stack
     velocitySpinFlywheel(455);
 
-    pidturn(-131);
-    pidmove(1410);
+    pidturn(-132);
+    pidmove(1420);
     moveIntake(127);
     
     //collect discs
     chas_move(80, 80); // speed up later
-    delay(1050);
+    delay(1000);
     chas_move(0, 0);
 
     //turn towards goal
