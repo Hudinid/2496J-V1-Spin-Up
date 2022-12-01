@@ -345,7 +345,7 @@ void redHalfAwpRight() {
 void redHalfAwpLeft() {
 //setup straight (roller perpendicular to robot, as far forward without touching disc)
 //charge flywheel
-    velocitySpinFlywheel(520);
+    velocitySpinFlywheel(513);
     chas_move(30, 30);
     moveIntake(-70);
     delay(250);
@@ -357,8 +357,8 @@ void redHalfAwpLeft() {
     delay(50);
     chas_move(-70, -70);
     delay(100);
-    pidturn(3);
-    delay(1000);
+    pidturn(4);
+    delay(900);
         
     //fire discs
     spinIndexer(-1, 60);
@@ -367,14 +367,14 @@ void redHalfAwpLeft() {
     delay(800);
     
     spinIndexer(-2, 60);
-    moveIntake(-77);
+    moveIntake(-95);
     delay(1000);
 
     //drive and pick up 3 disc stack
-    velocitySpinFlywheel(463);
+    velocitySpinFlywheel(455);
 
     pidturn(-131);
-    pidmove(1350);
+    pidmove(1390);
     moveIntake(127);
     
     //collect discs
@@ -383,8 +383,8 @@ void redHalfAwpLeft() {
     chas_move(0, 0);
 
     //turn towards goal
-    pidturn(-30);
-    delay(1000);
+    pidturn(-32);
+    delay(900);
     //fire three discs
     spinIndexer(-1, 60);
     delay(500);

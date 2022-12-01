@@ -115,8 +115,8 @@ void competition_initialize() {
  * from where it left off.
  */
 void autonomous() {  
-	// currAuton = 100;
-	
+	currAuton = 100;
+	redHalfAwpLeft();
 	// skills_discs();
 
 	if(currAuton == 1) {
