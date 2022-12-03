@@ -268,16 +268,17 @@ void blueHalfAwpRight() {
     chas_move(75, 75);
     delay(500);
     chas_move(0, 0);
-    pidturn(220);
+    pidturn(219);
     delay(1500);
     spinIndexer(-1, 60);
     // velocitySpinFlywheel(510);
 
-    delay(1750);
+    delay(1700);
     spinIndexer(-1, 60);
-    velocitySpinFlywheel(480);
     delay(1000);
-    spinIndexer(-2, 100);
+    spinIndexer(-1, 60);
+    delay(1000);
+    spinIndexer(-1, 60);
     delay(750);
     
     pidturn(180);
@@ -289,7 +290,7 @@ void blueHalfAwpRight() {
     
     pidturn(94);
     
-    pidmove(1602);
+    pidmove(1583);
     pidturn(180);
     
     // flipping a coin
@@ -309,16 +310,17 @@ void redHalfAwpRight() {
     chas_move(75, 75);
     delay(500);
     chas_move(0, 0);
-    pidturn(220);
+    pidturn(219);
     delay(1500);
     spinIndexer(-1, 60);
     // velocitySpinFlywheel(510);
 
-    delay(1750);
+    delay(1700);
     spinIndexer(-1, 60);
-    velocitySpinFlywheel(480);
     delay(1000);
-    spinIndexer(-2, 100);
+    spinIndexer(-1, 60);
+    delay(1000);
+    spinIndexer(-1, 60);
     delay(750);
     
     pidturn(180);
@@ -330,7 +332,7 @@ void redHalfAwpRight() {
     
     pidturn(94);
     
-    pidmove(1602);
+    pidmove(1583);
     pidturn(180);
     
     // flipping a coin
@@ -343,9 +345,9 @@ void redHalfAwpRight() {
 }
 
 void redHalfAwpLeft() {
-//setup straight (roller perpendicular to robot, as far forward without touching disc)
+    //setup straight (roller perpendicular to robot, as far forward without touching disc)
 //charge flywheel
-    velocitySpinFlywheel(500);
+    spinFlywheel(112);
     chas_move(30, 30);
     moveIntake(-70);
     delay(250);
@@ -358,40 +360,45 @@ void redHalfAwpLeft() {
     chas_move(-70, -70);
     delay(100);
     pidturn(4);
-    delay(900);
+    delay(700);
         
     //fire discs
     spinIndexer(-1, 60);
     // spinFlywheel(113);
 
-    delay(600);
+    delay(800);
     
     spinIndexer(-2, 60);
-    moveIntake(-50);
+    //moveIntake(-77);
     delay(1000);
 
     //drive and pick up 3 disc stack
-    velocitySpinFlywheel(455);
+    velocitySpinFlywheel(458);
 
     pidturn(-132);
-    pidmove(1420);
+    pidmove(1430);
     moveIntake(127);
     
     //collect discs
-    chas_move(80, 80); // speed up later
-    delay(1000);
+    chas_move(33, 33); // speed up later
+    delay(2400);
     chas_move(0, 0);
+    delay(900);
 
     //turn towards goal
-    pidturn(-33);
-    delay(900);
+    pidturn(-26);
+    delay(1000);
     //fire three discs
     spinIndexer(-1, 60);
     delay(500);
     
     spinIndexer(-1, 60);
-    delay(350);
+    delay(550);
     
+    spinIndexer(-1, 60);
+    
+    delay(650);
+
     spinIndexer(-2, 60);
     
     delay(650);
@@ -407,7 +414,7 @@ void redHalfAwpLeft() {
 void blueHalfAwpLeft() {
     //setup straight (roller perpendicular to robot, as far forward without touching disc)
 //charge flywheel
-    velocitySpinFlywheel(520);
+    spinFlywheel(112);
     chas_move(30, 30);
     moveIntake(-70);
     delay(250);
@@ -419,8 +426,8 @@ void blueHalfAwpLeft() {
     delay(50);
     chas_move(-70, -70);
     delay(100);
-    pidturn(3);
-    delay(1000);
+    pidturn(4);
+    delay(700);
         
     //fire discs
     spinIndexer(-1, 60);
@@ -429,31 +436,36 @@ void blueHalfAwpLeft() {
     delay(800);
     
     spinIndexer(-2, 60);
-    moveIntake(-77);
+    //moveIntake(-77);
     delay(1000);
 
     //drive and pick up 3 disc stack
-    velocitySpinFlywheel(463);
+    velocitySpinFlywheel(458);
 
-    pidturn(-131);
-    pidmove(1350);
+    pidturn(-132);
+    pidmove(1430);
     moveIntake(127);
     
     //collect discs
-    chas_move(80, 80); // speed up later
-    delay(1050);
+    chas_move(33, 33); // speed up later
+    delay(2400);
     chas_move(0, 0);
+    delay(900);
 
     //turn towards goal
-    pidturn(-30);
+    pidturn(-26);
     delay(1000);
     //fire three discs
     spinIndexer(-1, 60);
     delay(500);
     
     spinIndexer(-1, 60);
-    delay(350);
+    delay(550);
     
+    spinIndexer(-1, 60);
+    
+    delay(650);
+
     spinIndexer(-2, 60);
     
     delay(650);
