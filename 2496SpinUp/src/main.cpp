@@ -117,7 +117,6 @@ void competition_initialize() {
 void autonomous() {  
 	currAuton = 100;
 	
-	// skills_discs();
 
 	if(currAuton == 1) {
 		redHalfAwpLeft();
@@ -137,7 +136,7 @@ void autonomous() {
 	if(currAuton == 6) {
 		blueSoloAwp();
 	}
-	if(currAuton ==7) {
+	if(currAuton == 7) {
 		skills_discs();
 	}
 	if(currAuton == 8) {
