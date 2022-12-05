@@ -623,7 +623,7 @@ void blueSoloAwp() {
 void skills_discs() {
     spinFlywheel(112);
     chas_move(30, 30);
-    moveIntake(-110);
+    moveIntake(-120);
     delay(250);
     // moveIntake(0);
     // delay(100); 
@@ -633,7 +633,7 @@ void skills_discs() {
     delay(50);
     chas_move(-70, -70);
     delay(100);
-    pidturn(4);
+    pidturn(5);
     delay(700);
         
     //fire discs
@@ -660,7 +660,7 @@ void skills_discs() {
     delay(900);
 
     //turn towards goal
-    pidturn(-26);
+    pidturn(-25);
     delay(1000);
     //fire three discs
     spinIndexer(-1, 60);
@@ -685,53 +685,34 @@ void skills_discs() {
 
     // skills portion
     pidturn(45);
-    pidmove(2200);
+    pidmove(2300);
     pidturn(95);
     moveIntake(127);
     chas_move(60, 60); // speed up later
     delay(1000);
     chas_move(0, 0);
-    delay(1700);
+    delay(2500);
     pidturn(90);
-    moveIntake(-100);
+    moveIntake(-110);
     chas_move(30, 30); // speed up later
     delay(1500);
     chas_move(0, 0);
-    delay(1000);
 
     //spin roller
     delay(50);
     spinFlywheel(300);
     chas_move(-70, -70);
-    delay(500);
+    delay(200);
     chas_move(0,0);
     delay(1000);
     spinIndexer(-3, 70);
     moveIntake(127);
     delay(1000);
 
-    pidturn(-180);
-
-    pidmove(800);
-
-    chas_move(33, 33); // speed up later
-    delay(1500);
-    chas_move(0, 0);
-    delay(900);
-
-    pidturn(120);
-
-    delay(500);
-    spinIndexer(-1, 60);
-    delay(1000);
-    spinIndexer(-1, 60);
-    delay(1000);
-    spinIndexer(-1, 60);
-    delay(750);
-    pidturn(0);
-    pidmove(1000);
-    pidturn(45);
-    pidmove(600);
+    
+    pidmove(-500);
+    pidturn(50);
+    pidmove(700);
     expansion.set_value(true);
 
 }
